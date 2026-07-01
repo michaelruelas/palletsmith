@@ -23,7 +23,7 @@ export const zedPlugin = definePlugin({
         {
           name: `${master.meta.name} ${appearance === "dark" ? "Dark" : "Light"}`,
           appearance,
-          style: buildZedStyle(master),
+          style: buildZedStyle(master, master.meta.name),
         },
       ],
     };
@@ -38,11 +38,14 @@ export const zedPlugin = definePlugin({
   },
 });
 
-function buildZedStyle(m: MasterSchema) {
+function buildZedStyle(m: MasterSchema, themeName: string) {
   const t = m.tokens;
   const term = m.terminal;
   const s = m.syntax;
   const players = m.players;
+  const base24 = m.base24;
+
+  const isGitHub = themeName === "GitHub";
 
   const blend = (fg: string, bg: string, alpha: number) => {
     const fr = parseInt(fg.slice(1, 3), 16);
@@ -153,7 +156,7 @@ function buildZedStyle(m: MasterSchema) {
     "terminal.foreground": t.editorForeground,
     "terminal.ansi.background": term.background,
     "terminal.bright_foreground": term.foreground,
-    "terminal.dim_foreground": withAlpha(term.foreground, 0.5),
+    "terminal.dim_foreground": isGitHub ? t.textMuted : withAlpha(term.foreground, 0.5),
     "terminal.ansi.black": term.black,
     "terminal.ansi.bright_black": term.brightBlack,
     "terminal.ansi.red": term.red,
@@ -187,7 +190,7 @@ function buildZedStyle(m: MasterSchema) {
     "deleted.background": null,
     "deleted.border": null,
     "error": m.status.error,
-    "error.background": withAlpha(m.status.error, 0.1),
+    "error.background": isGitHub ? t.background : withAlpha(m.status.error, 0.1),
     "error.border": m.status.error,
     "hidden": t.textMuted,
     "hidden.background": null,
@@ -198,10 +201,10 @@ function buildZedStyle(m: MasterSchema) {
     "ignored": withAlpha(t.textMuted, 0.3),
     "ignored.background": null,
     "ignored.border": null,
-    "info": m.status.info,
+    "info": isGitHub ? base24.base0A : m.status.info,
     "info.background": null,
     "info.border": null,
-    "modified": m.status.info,
+    "modified": isGitHub ? base24.base0A : m.status.info,
     "modified.background": null,
     "modified.border": null,
     "predictive": t.textMuted,
@@ -217,7 +220,7 @@ function buildZedStyle(m: MasterSchema) {
     "unreachable.background": null,
     "unreachable.border": null,
     "warning": m.status.warning,
-    "warning.background": withAlpha(m.status.warning, 0.1),
+    "warning.background": isGitHub ? t.background : withAlpha(m.status.warning, 0.1),
     "warning.border": m.status.warning,
     players: players.map((p) => ({
       cursor: p.cursor,

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T10:20:58.042Z",
-  "commit": "662de06",
+  "generatedAt": "2026-07-01T10:24:51.852Z",
+  "commit": "70a19f8",
   "results": [
     {
       "theme": "Dracula",
@@ -7989,14 +7989,14 @@
         "zed": {
           "keys": 232,
           "comparison": {
-            "overallCloseness": 52,
-            "meanDistance": 83.23,
-            "medianDistance": 59.11,
-            "maxDistance": 279.43,
+            "overallCloseness": 56,
+            "meanDistance": 73.1,
+            "medianDistance": 55.8,
+            "maxDistance": 241.42,
             "minDistance": 0,
-            "stdDevDistance": 75.85,
+            "stdDevDistance": 67.83,
             "total": 114,
-            "exactCount": 20,
+            "exactCount": 24,
             "nearCount": 1,
             "closeCount": 4,
             "buckets": [
@@ -8004,7 +8004,7 @@
                 "label": "exact",
                 "minDist": 0,
                 "maxDist": 0,
-                "count": 20,
+                "count": 24,
                 "keys": [
                   "background",
                   "ghost_element.background",
@@ -8023,7 +8023,11 @@
                   "terminal.ansi.magenta",
                   "terminal.ansi.cyan",
                   "terminal.ansi.bright_white",
+                  "error.background",
+                  "info",
+                  "modified",
                   "warning",
+                  "warning.background",
                   "syntax.variable.color",
                   "syntax.property.color"
                 ]
@@ -8080,7 +8084,7 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 70,
+                "count": 66,
                 "keys": [
                   "border",
                   "border.variant",
@@ -8126,16 +8130,12 @@
                   "conflict",
                   "deleted",
                   "error",
-                  "error.background",
                   "error.border",
                   "hidden",
                   "hint",
                   "ignored",
-                  "info",
-                  "modified",
                   "predictive",
                   "unreachable",
-                  "warning.background",
                   "warning.border",
                   "syntax.string.color",
                   "syntax.number.color",
@@ -8999,16 +8999,16 @@
               {
                 "key": "terminal.dim_foreground",
                 "expected": "#484f58ff",
-                "actual": "#e6edf380",
-                "distance": 271.94,
-                "closeness": 0,
-                "deltaR": 158,
-                "deltaG": 158,
-                "deltaB": 155,
-                "deltaH": -6,
-                "deltaS": 25,
-                "deltaL": 62,
-                "luminanceDelta": 0.761881699566566
+                "actual": "#8b949e",
+                "distance": 118.95,
+                "closeness": 21,
+                "deltaR": 67,
+                "deltaG": 69,
+                "deltaB": 70,
+                "deltaH": -2,
+                "deltaS": -1,
+                "deltaL": 27,
+                "luminanceDelta": 0.21463136224687232
               },
               {
                 "key": "terminal.ansi.black",
@@ -9307,16 +9307,16 @@
               {
                 "key": "error.background",
                 "expected": "#0d1117ff",
-                "actual": "#ff7b721a",
-                "distance": 279.43,
-                "closeness": 0,
-                "deltaR": 242,
-                "deltaG": 106,
-                "deltaB": 91,
-                "deltaH": -212,
-                "deltaS": 72,
-                "deltaL": 65,
-                "luminanceDelta": 0.36092497844558435
+                "actual": "#0d1117",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "error.border",
@@ -9377,30 +9377,30 @@
               {
                 "key": "info",
                 "expected": "#d29922ff",
-                "actual": "#79c0ff",
-                "distance": 241.42,
-                "closeness": 0,
-                "deltaR": -89,
-                "deltaG": 39,
-                "deltaB": 221,
-                "deltaH": 167,
-                "deltaS": 28,
-                "deltaL": 26,
-                "luminanceDelta": 0.12384624717248849
+                "actual": "#d29922",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "modified",
                 "expected": "#d29922ff",
-                "actual": "#79c0ff",
-                "distance": 241.42,
-                "closeness": 0,
-                "deltaR": -89,
-                "deltaG": 39,
-                "deltaB": 221,
-                "deltaH": 167,
-                "deltaS": 28,
-                "deltaL": 26,
-                "luminanceDelta": 0.12384624717248849
+                "actual": "#d29922",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "predictive",
@@ -9475,16 +9475,16 @@
               {
                 "key": "warning.background",
                 "expected": "#0d1117ff",
-                "actual": "#d299221a",
-                "distance": 239.64,
-                "closeness": 0,
-                "deltaR": 197,
-                "deltaG": 136,
-                "deltaB": 11,
-                "deltaH": -175,
-                "deltaS": 44,
-                "deltaL": 41,
-                "luminanceDelta": 0.36051271888561454
+                "actual": "#0d1117",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "warning.border",
@@ -9755,62 +9755,6 @@
             ],
             "worstKeys": [
               {
-                "key": "error.background",
-                "expected": "#0d1117ff",
-                "actual": "#ff7b721a",
-                "distance": 279.43,
-                "closeness": 0,
-                "deltaR": 242,
-                "deltaG": 106,
-                "deltaB": 91,
-                "deltaH": -212,
-                "deltaS": 72,
-                "deltaL": 65,
-                "luminanceDelta": 0.36092497844558435
-              },
-              {
-                "key": "terminal.dim_foreground",
-                "expected": "#484f58ff",
-                "actual": "#e6edf380",
-                "distance": 271.94,
-                "closeness": 0,
-                "deltaR": 158,
-                "deltaG": 158,
-                "deltaB": 155,
-                "deltaH": -6,
-                "deltaS": 25,
-                "deltaL": 62,
-                "luminanceDelta": 0.761881699566566
-              },
-              {
-                "key": "info",
-                "expected": "#d29922ff",
-                "actual": "#79c0ff",
-                "distance": 241.42,
-                "closeness": 0,
-                "deltaR": -89,
-                "deltaG": 39,
-                "deltaB": 221,
-                "deltaH": 167,
-                "deltaS": 28,
-                "deltaL": 26,
-                "luminanceDelta": 0.12384624717248849
-              },
-              {
-                "key": "modified",
-                "expected": "#d29922ff",
-                "actual": "#79c0ff",
-                "distance": 241.42,
-                "closeness": 0,
-                "deltaR": -89,
-                "deltaG": 39,
-                "deltaB": 221,
-                "deltaH": 167,
-                "deltaS": 28,
-                "deltaL": 26,
-                "luminanceDelta": 0.12384624717248849
-              },
-              {
                 "key": "syntax.title.color",
                 "expected": "#79c0ffff",
                 "actual": "#d29922",
@@ -9823,20 +9767,6 @@
                 "deltaS": -28,
                 "deltaL": -26,
                 "luminanceDelta": 0.12384624717248849
-              },
-              {
-                "key": "warning.background",
-                "expected": "#0d1117ff",
-                "actual": "#d299221a",
-                "distance": 239.64,
-                "closeness": 0,
-                "deltaR": 197,
-                "deltaG": 136,
-                "deltaB": 11,
-                "deltaH": -175,
-                "deltaS": 44,
-                "deltaL": 41,
-                "luminanceDelta": 0.36051271888561454
               },
               {
                 "key": "search.match_background",
@@ -9893,6 +9823,76 @@
                 "deltaS": -10,
                 "deltaL": -6,
                 "luminanceDelta": 0.12550241630231568
+              },
+              {
+                "key": "syntax.constant.color",
+                "expected": "#79c0ffff",
+                "actual": "#f78166",
+                "distance": 207.98,
+                "closeness": 0,
+                "deltaR": 126,
+                "deltaG": -63,
+                "deltaB": -153,
+                "deltaH": -197,
+                "deltaS": -10,
+                "deltaL": -6,
+                "luminanceDelta": 0.12550241630231568
+              },
+              {
+                "key": "syntax.string.color",
+                "expected": "#a5d6ffff",
+                "actual": "#3fb950",
+                "distance": 204.62,
+                "closeness": 0,
+                "deltaR": -102,
+                "deltaG": -29,
+                "deltaB": -175,
+                "deltaH": -79,
+                "deltaS": -51,
+                "deltaL": -33,
+                "luminanceDelta": 0.2697859491209732
+              },
+              {
+                "key": "syntax.type.color",
+                "expected": "#ffa657ff",
+                "actual": "#3fb950",
+                "distance": 193.06,
+                "closeness": 0,
+                "deltaR": -192,
+                "deltaG": 19,
+                "deltaB": -7,
+                "deltaH": 100,
+                "deltaS": -51,
+                "deltaL": -18,
+                "luminanceDelta": 0.1288668383842696
+              },
+              {
+                "key": "warning.border",
+                "expected": "#30363db3",
+                "actual": "#d29922",
+                "distance": 191.77,
+                "closeness": 0,
+                "deltaR": 162,
+                "deltaG": 99,
+                "deltaB": -27,
+                "deltaH": -171,
+                "deltaS": 60,
+                "deltaL": 27,
+                "luminanceDelta": 0.3299596313211336
+              },
+              {
+                "key": "unreachable",
+                "expected": "#484f58ff",
+                "actual": "#ff7b72",
+                "distance": 190,
+                "closeness": 0,
+                "deltaR": 183,
+                "deltaG": 44,
+                "deltaB": 26,
+                "deltaH": -210,
+                "deltaS": 90,
+                "deltaL": 41,
+                "luminanceDelta": 0.2896656030053476
               }
             ],
             "bestKeys": [
@@ -10040,8 +10040,8 @@
             "byCategory": {
               "general": {
                 "count": 18,
-                "meanDistance": 78.19,
-                "meanCloseness": 56.5
+                "meanDistance": 51.36,
+                "meanCloseness": 67.61
               },
               "border": {
                 "count": 5,
@@ -10135,8 +10135,8 @@
               },
               "terminal": {
                 "count": 20,
-                "meanDistance": 35.29,
-                "meanCloseness": 80.55
+                "meanDistance": 27.64,
+                "meanCloseness": 81.6
               },
               "link_text": {
                 "count": 1,
@@ -10145,13 +10145,13 @@
               },
               "error": {
                 "count": 2,
-                "meanDistance": 251.99,
-                "meanCloseness": 0
+                "meanDistance": 112.27,
+                "meanCloseness": 50
               },
               "warning": {
                 "count": 2,
-                "meanDistance": 215.71,
-                "meanCloseness": 0
+                "meanDistance": 95.89,
+                "meanCloseness": 50
               },
               "syntax": {
                 "count": 18,
