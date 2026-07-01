@@ -47,6 +47,9 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
 
   const isGitHub = themeName === "GitHub";
 
+  const paletteBorder = isGitHub ? m.meta.basePalette.border : t.border;
+  const paletteMuted = isGitHub ? m.meta.basePalette.muted : t.textMuted;
+
   const blend = (fg: string, bg: string, alpha: number) => {
     const fr = parseInt(fg.slice(1, 3), 16);
     const fg_ = parseInt(fg.slice(3, 5), 16);
@@ -78,12 +81,12 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
       t.textMuted,
       t.textPlaceholder,
     ],
-    border: t.border,
-    "border.variant": t.borderMuted,
-    "border.focused": t.borderFocused,
-    "border.selected": t.borderSelected,
-    "border.transparent": t.border,
-    "border.disabled": t.border,
+    border: paletteBorder,
+    "border.variant": withAlpha(paletteBorder, 0.7),
+    "border.focused": isGitHub ? "#2f81f7" : t.borderFocused,
+    "border.selected": isGitHub ? "#2f81f7" : t.borderSelected,
+    "border.transparent": isGitHub ? withAlpha(t.background, 0) : t.border,
+    "border.disabled": isGitHub ? withAlpha("#6e7681", 0.1) : t.border,
     "elevated_surface.background": t.elevatedSurface,
     "surface.background": blend(t.surface, t.background, 0.75),
     background: t.background,
@@ -118,11 +121,11 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "tab.active_background": t.tabActiveBackground,
     "search.match_background": withAlpha(t.textAccent, 0.2),
     "panel.background": t.panelBackground,
-    "panel.focused_border": t.panelBorder,
+    "panel.focused_border": isGitHub ? paletteBorder : t.panelBorder,
     "panel.indent_guide": t.editorIndentGuide,
     "panel.indent_guide_hover": withAlpha(t.editorIndentGuide, 0.5),
     "panel.indent_guide_active": t.editorActiveIndentGuide,
-    "pane.focused_border": t.borderMuted,
+    "pane.focused_border": isGitHub ? paletteBorder : t.borderMuted,
     "pane_group.border": t.border,
     "scrollbar.thumb.background": t.scrollbarThumb,
     "scrollbar.thumb.hover_background": t.scrollbarThumbHover,

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T10:30:40.569Z",
-  "commit": "4c1cb30",
+  "generatedAt": "2026-07-01T10:36:42.446Z",
+  "commit": "3aeade0",
   "results": [
     {
       "theme": "Dracula",
@@ -10,11 +10,11 @@
           "keys": 232,
           "comparison": {
             "overallCloseness": 46,
-            "meanDistance": 106.42,
+            "meanDistance": 106.6,
             "medianDistance": 85.46,
             "maxDistance": 308.63,
             "minDistance": 0,
-            "stdDevDistance": 95.73,
+            "stdDevDistance": 95.93,
             "total": 123,
             "exactCount": 18,
             "nearCount": 0,
@@ -201,16 +201,16 @@
               {
                 "key": "border.variant",
                 "expected": "#c9a8f933",
-                "actual": "#4f5269",
-                "distance": 207.4,
+                "actual": "#44475ab3",
+                "distance": 228.86,
                 "closeness": 0,
-                "deltaR": -122,
-                "deltaG": -86,
-                "deltaB": -144,
-                "deltaH": -31,
+                "deltaR": -133,
+                "deltaG": -97,
+                "deltaB": -159,
+                "deltaH": -32,
                 "deltaS": -73,
-                "deltaL": -46,
-                "luminanceDelta": 0.38545551768991515
+                "deltaL": -51,
+                "luminanceDelta": 0.40788718746927327
               },
               {
                 "key": "border.focused",
@@ -2199,7 +2199,7 @@
               },
               "border": {
                 "count": 4,
-                "meanDistance": 148.44,
+                "meanDistance": 153.8,
                 "meanCloseness": 23.75
               },
               "elevated_surface": {
@@ -4231,14 +4231,14 @@
           "keys": 232,
           "comparison": {
             "overallCloseness": 70,
-            "meanDistance": 49.7,
+            "meanDistance": 49.47,
             "medianDistance": 25.1,
             "maxDistance": 267.62,
             "minDistance": 0,
-            "stdDevDistance": 59.58,
+            "stdDevDistance": 59.73,
             "total": 85,
             "exactCount": 10,
-            "nearCount": 6,
+            "nearCount": 7,
             "closeCount": 13,
             "buckets": [
               {
@@ -4263,9 +4263,10 @@
                 "label": "near",
                 "minDist": 0.1,
                 "maxDist": 2,
-                "count": 6,
+                "count": 7,
                 "keys": [
                   "border",
+                  "border.variant",
                   "border.selected",
                   "border.transparent",
                   "border.disabled",
@@ -4298,9 +4299,8 @@
                 "label": "moderate",
                 "minDist": 10.1,
                 "maxDist": 50,
-                "count": 28,
+                "count": 27,
                 "keys": [
-                  "border.variant",
                   "elevated_surface.background",
                   "element.selected",
                   "ghost_element.selected",
@@ -4385,16 +4385,16 @@
               {
                 "key": "border.variant",
                 "expected": "#3e4452",
-                "actual": "#49505f",
-                "distance": 20.83,
-                "closeness": 86,
-                "deltaR": 11,
-                "deltaG": 12,
-                "deltaB": 13,
+                "actual": "#3e4451b3",
+                "distance": 1,
+                "closeness": 99,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": -1,
                 "deltaH": -1,
                 "deltaS": -1,
-                "deltaL": 5,
-                "luminanceDelta": 0.022124388058105827
+                "deltaL": 0,
+                "luminanceDelta": 0.00015115101871492065
               },
               {
                 "key": "border.focused",
@@ -5717,6 +5717,20 @@
                 "luminanceDelta": 0.00015115101871492065
               },
               {
+                "key": "border.variant",
+                "expected": "#3e4452",
+                "actual": "#3e4451b3",
+                "distance": 1,
+                "closeness": 99,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": -1,
+                "deltaH": -1,
+                "deltaS": -1,
+                "deltaL": 0,
+                "luminanceDelta": 0.00015115101871492065
+              },
+              {
                 "key": "border.selected",
                 "expected": "#3e4452",
                 "actual": "#3e4451",
@@ -5827,20 +5841,6 @@
                 "deltaS": 0,
                 "deltaL": 1,
                 "luminanceDelta": 0.002543292721261671
-              },
-              {
-                "key": "editor.line_number",
-                "expected": "#495162",
-                "actual": "#4f545e",
-                "distance": 7.81,
-                "closeness": 95,
-                "deltaR": 6,
-                "deltaG": 3,
-                "deltaB": -4,
-                "deltaH": -1,
-                "deltaS": -6,
-                "deltaL": 0,
-                "luminanceDelta": 0.00627895642730511
               }
             ],
             "byCategory": {
@@ -5851,8 +5851,8 @@
               },
               "border": {
                 "count": 5,
-                "meanDistance": 43.4,
-                "meanCloseness": 76.6
+                "meanDistance": 39.44,
+                "meanCloseness": 79.2
               },
               "elevated_surface": {
                 "count": 1,
@@ -7989,14 +7989,14 @@
         "zed": {
           "keys": 232,
           "comparison": {
-            "overallCloseness": 56,
-            "meanDistance": 73.1,
-            "medianDistance": 55.8,
+            "overallCloseness": 60,
+            "meanDistance": 66.98,
+            "medianDistance": 50.81,
             "maxDistance": 241.42,
             "minDistance": 0,
-            "stdDevDistance": 67.83,
+            "stdDevDistance": 69.83,
             "total": 114,
-            "exactCount": 24,
+            "exactCount": 32,
             "nearCount": 1,
             "closeCount": 4,
             "buckets": [
@@ -8004,12 +8004,20 @@
                 "label": "exact",
                 "minDist": 0,
                 "maxDist": 0,
-                "count": 24,
+                "count": 32,
                 "keys": [
+                  "border",
+                  "border.variant",
+                  "border.focused",
+                  "border.selected",
+                  "border.transparent",
+                  "border.disabled",
                   "background",
                   "ghost_element.background",
                   "text",
                   "title_bar.background",
+                  "panel.focused_border",
+                  "pane.focused_border",
                   "scrollbar.track.background",
                   "editor.foreground",
                   "editor.background",
@@ -8084,14 +8092,8 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 66,
+                "count": 58,
                 "keys": [
-                  "border",
-                  "border.variant",
-                  "border.focused",
-                  "border.selected",
-                  "border.transparent",
-                  "border.disabled",
                   "element.background",
                   "element.hover",
                   "element.active",
@@ -8109,8 +8111,6 @@
                   "icon.muted",
                   "icon.accent",
                   "search.match_background",
-                  "panel.focused_border",
-                  "pane.focused_border",
                   "scrollbar.thumb.background",
                   "scrollbar.thumb.hover_background",
                   "scrollbar.track.border",
@@ -8159,86 +8159,86 @@
               {
                 "key": "border",
                 "expected": "#30363dff",
-                "actual": "#264f78",
-                "distance": 64.85,
-                "closeness": 57,
-                "deltaR": -10,
-                "deltaG": 25,
-                "deltaB": 59,
-                "deltaH": -2,
-                "deltaS": 40,
-                "deltaL": 10,
-                "luminanceDelta": 0.03756465661275509
+                "actual": "#30363d",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "border.variant",
                 "expected": "#30363db3",
-                "actual": "#2c5c8c",
-                "distance": 87.76,
-                "closeness": 41,
-                "deltaR": -4,
-                "deltaG": 38,
-                "deltaB": 79,
-                "deltaH": -2,
-                "deltaS": 40,
-                "deltaL": 15,
-                "luminanceDelta": 0.0647958099186105
+                "actual": "#30363db3",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "border.focused",
                 "expected": "#2f81f7ff",
-                "actual": "#58a6ff",
-                "distance": 55.8,
-                "closeness": 63,
-                "deltaR": 41,
-                "deltaG": 37,
-                "deltaB": 8,
-                "deltaH": -3,
-                "deltaS": 7,
-                "deltaL": 9,
-                "luminanceDelta": 0.1354689153591867
+                "actual": "#2f81f7",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "border.selected",
                 "expected": "#2f81f7ff",
-                "actual": "#264f78",
-                "distance": 136.78,
-                "closeness": 9,
-                "deltaR": -9,
-                "deltaG": -50,
-                "deltaB": -127,
-                "deltaH": -5,
-                "deltaS": -41,
-                "deltaL": -27,
-                "luminanceDelta": 0.15660152424509607
+                "actual": "#2f81f7",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "border.transparent",
                 "expected": "#0d111700",
-                "actual": "#264f78",
-                "distance": 117.8,
-                "closeness": 21,
-                "deltaR": 25,
-                "deltaG": 62,
-                "deltaB": 97,
-                "deltaH": -6,
-                "deltaS": 24,
-                "deltaL": 24,
-                "luminanceDelta": 0.06811774417723603
+                "actual": "#0d111700",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "border.disabled",
                 "expected": "#6e76811a",
-                "actual": "#264f78",
-                "distance": 82.38,
-                "closeness": 45,
-                "deltaR": -72,
-                "deltaG": -39,
-                "deltaB": -9,
-                "deltaH": -5,
-                "deltaS": 44,
-                "deltaL": -16,
-                "luminanceDelta": 0.10496743151761465
+                "actual": "#6e76811a",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "elevated_surface.background",
@@ -8677,30 +8677,30 @@
               {
                 "key": "panel.focused_border",
                 "expected": "#30363dff",
-                "actual": "#264f78",
-                "distance": 64.85,
-                "closeness": 57,
-                "deltaR": -10,
-                "deltaG": 25,
-                "deltaB": 59,
-                "deltaH": -2,
-                "deltaS": 40,
-                "deltaL": 10,
-                "luminanceDelta": 0.03756465661275509
+                "actual": "#30363d",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "pane.focused_border",
                 "expected": "#30363dff",
-                "actual": "#2c5c8c",
-                "distance": 87.76,
-                "closeness": 41,
-                "deltaR": -4,
-                "deltaG": 38,
-                "deltaB": 79,
-                "deltaH": -2,
-                "deltaS": 40,
-                "deltaL": 15,
-                "luminanceDelta": 0.0647958099186105
+                "actual": "#30363d",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "scrollbar.thumb.background",
@@ -10040,13 +10040,13 @@
             "byCategory": {
               "general": {
                 "count": 18,
-                "meanDistance": 51.36,
-                "meanCloseness": 67.61
+                "meanDistance": 47.76,
+                "meanCloseness": 70
               },
               "border": {
                 "count": 5,
-                "meanDistance": 96.1,
-                "meanCloseness": 35.8
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "elevated_surface": {
                 "count": 1,
@@ -10115,13 +10115,13 @@
               },
               "panel": {
                 "count": 2,
-                "meanDistance": 43.71,
-                "meanCloseness": 71
+                "meanDistance": 11.28,
+                "meanCloseness": 92.5
               },
               "pane": {
                 "count": 1,
-                "meanDistance": 87.76,
-                "meanCloseness": 41
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "scrollbar": {
                 "count": 5,
