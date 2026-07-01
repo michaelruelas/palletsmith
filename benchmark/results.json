@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T09:22:42.545Z",
-  "commit": "5ab1c6b",
+  "generatedAt": "2026-07-01T09:25:46.671Z",
+  "commit": "bbe0da2",
   "results": [
     {
       "theme": "Dracula",
@@ -6842,14 +6842,14 @@
         "vscode": {
           "keys": 178,
           "comparison": {
-            "overallCloseness": 76,
-            "meanDistance": 36.91,
-            "medianDistance": 23.35,
+            "overallCloseness": 78,
+            "meanDistance": 34.77,
+            "medianDistance": 22.69,
             "maxDistance": 216.75,
             "minDistance": 0,
-            "stdDevDistance": 42.29,
+            "stdDevDistance": 40.09,
             "total": 73,
-            "exactCount": 18,
+            "exactCount": 19,
             "nearCount": 1,
             "closeCount": 4,
             "buckets": [
@@ -6857,7 +6857,7 @@
                 "label": "exact",
                 "minDist": 0,
                 "maxDist": 0,
-                "count": 18,
+                "count": 19,
                 "keys": [
                   "editor.background",
                   "editor.foreground",
@@ -6876,7 +6876,8 @@
                   "descriptionForeground",
                   "textLink.foreground",
                   "terminal.foreground",
-                  "terminal.background"
+                  "terminal.background",
+                  "editorWarning.foreground"
                 ]
               },
               {
@@ -6942,7 +6943,7 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 20,
+                "count": 19,
                 "keys": [
                   "editor.selectionBackground",
                   "editorIndentGuide.activeBackground1",
@@ -6962,8 +6963,7 @@
                   "terminal.ansiYellow",
                   "terminal.ansiBrightYellow",
                   "terminal.ansiWhite",
-                  "editorError.foreground",
-                  "editorWarning.foreground"
+                  "editorError.foreground"
                 ]
               }
             ],
@@ -7979,16 +7979,16 @@
               {
                 "key": "editorWarning.foreground",
                 "expected": "#d19a66",
-                "actual": "#56b6c2",
-                "distance": 156.13,
-                "closeness": 0,
-                "deltaR": -123,
-                "deltaG": 28,
-                "deltaB": 92,
-                "deltaH": 158,
-                "deltaS": -7,
-                "deltaL": -6,
-                "luminanceDelta": 0.017035514202396573
+                "actual": "#d19a66",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               }
             ],
             "worstKeys": [
@@ -8019,20 +8019,6 @@
                 "deltaS": 44,
                 "deltaL": -37,
                 "luminanceDelta": 0.4391831452811483
-              },
-              {
-                "key": "editorWarning.foreground",
-                "expected": "#d19a66",
-                "actual": "#56b6c2",
-                "distance": 156.13,
-                "closeness": 0,
-                "deltaR": -123,
-                "deltaG": 28,
-                "deltaB": 92,
-                "deltaH": 158,
-                "deltaS": -7,
-                "deltaL": -6,
-                "luminanceDelta": 0.017035514202396573
               },
               {
                 "key": "activityBarBadge.foreground",
@@ -8131,6 +8117,20 @@
                 "deltaS": -2,
                 "deltaL": 12,
                 "luminanceDelta": 0.2209324865748864
+              },
+              {
+                "key": "tab.activeForeground",
+                "expected": "#dcdcdc",
+                "actual": "#abb2bf",
+                "distance": 70.75,
+                "closeness": 53,
+                "deltaR": -49,
+                "deltaG": -42,
+                "deltaB": -29,
+                "deltaH": 219,
+                "deltaS": 14,
+                "deltaL": -15,
+                "luminanceDelta": 0.27309045675281096
               }
             ],
             "bestKeys": [
@@ -8398,8 +8398,8 @@
               },
               "editorWarning": {
                 "count": 1,
-                "meanDistance": 156.13,
-                "meanCloseness": 0
+                "meanDistance": 0,
+                "meanCloseness": 100
               }
             }
           }

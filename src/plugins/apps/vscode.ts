@@ -205,7 +205,7 @@ function buildColors(
     "gitDecoration.ignoredResourceForeground": t.textMuted,
 
     "editorError.foreground": status.error,
-    "editorWarning.foreground": term.cyan,
+    "editorWarning.foreground": themeName === "Dracula" ? term.cyan : base24.base09,
     "editorInfo.foreground": status.info,
     "editorHint.foreground": status.success,
     "errorForeground": status.error,
