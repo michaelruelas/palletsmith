@@ -157,7 +157,7 @@ function buildColors(
     "list.hoverForeground": t.textPrimary,
     "list.inactiveSelectionBackground": t.surface,
     "list.focusBackground": t.selectionBackground,
-    "list.highlightForeground": t.textAccent,
+    "list.highlightForeground": term.cyan,
 
     "button.background": t.buttonBackground,
     "button.foreground": t.buttonForeground,
@@ -203,7 +203,7 @@ function buildColors(
     "gitDecoration.ignoredResourceForeground": t.textMuted,
 
     "editorError.foreground": status.error,
-    "editorWarning.foreground": status.warning,
+    "editorWarning.foreground": term.cyan,
     "editorInfo.foreground": status.info,
     "editorHint.foreground": status.success,
     "errorForeground": status.error,
