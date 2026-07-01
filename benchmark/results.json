@@ -1,16 +1,26 @@
 {
-  "generatedAt": "2026-07-01T03:52:56.272Z",
-  "commit": "12ffa09",
+  "generatedAt": "2026-07-01T05:00:22.573Z",
+  "commit": "9107149",
   "results": [
     {
       "theme": "Dracula",
       "appearance": "dark",
       "apps": {
         "zed": {
-          "keys": 232
+          "keys": 232,
+          "score": 18,
+          "total": 123,
+          "matched": 22,
+          "closeCount": 4,
+          "exactCount": 18
         },
         "ghostty": {
-          "keys": 21
+          "keys": 21,
+          "score": 52,
+          "total": 21,
+          "matched": 11,
+          "closeCount": 0,
+          "exactCount": 11
         },
         "vscode": {
           "keys": 178,
@@ -33,10 +43,20 @@
       "appearance": "dark",
       "apps": {
         "zed": {
-          "keys": 232
+          "keys": 232,
+          "score": 34,
+          "total": 85,
+          "matched": 29,
+          "closeCount": 19,
+          "exactCount": 10
         },
         "ghostty": {
-          "keys": 21
+          "keys": 21,
+          "score": 62,
+          "total": 21,
+          "matched": 13,
+          "closeCount": 0,
+          "exactCount": 13
         },
         "vscode": {
           "keys": 178,
@@ -87,6 +107,42 @@
         },
         "vscode": {
           "keys": 178
+        },
+        "chrome": {
+          "keys": 46
+        },
+        "openchamber": {
+          "keys": 125
+        }
+      }
+    },
+    {
+      "theme": "GitHub",
+      "appearance": "dark",
+      "apps": {
+        "zed": {
+          "keys": 232,
+          "score": 0,
+          "total": 114,
+          "matched": 0,
+          "closeCount": 0,
+          "exactCount": 0
+        },
+        "ghostty": {
+          "keys": 21,
+          "score": 10,
+          "total": 21,
+          "matched": 2,
+          "closeCount": 1,
+          "exactCount": 1
+        },
+        "vscode": {
+          "keys": 178,
+          "score": 28,
+          "total": 83,
+          "matched": 23,
+          "closeCount": 0,
+          "exactCount": 23
         },
         "chrome": {
           "keys": 46

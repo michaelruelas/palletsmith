@@ -235,12 +235,12 @@ describe("VS Code theme mapping accuracy", () => {
     {
       name: "One Dark Pro",
       palette: oneDarkPalette,
-      fixturePath: resolve(__dirname, "fixtures/onedarkpro.json"),
+      fixturePath: resolve(__dirname, "fixtures/onedarkpro_vscode.json"),
     },
     {
       name: "Dracula",
       palette: draculaPalette,
-      fixturePath: resolve(__dirname, "fixtures/dracula.json"),
+      fixturePath: resolve(__dirname, "fixtures/dracula_vscode.json"),
     },
   ];
 

@@ -19,3 +19,4 @@ export interface PresetPack {
 export { evergreenDark, evergreenLight, evergreenPreset } from "./evergreen.js";
 export { draculaPalette, draculaPreset } from "./dracula.js";
 export { oneDarkPalette, oneDarkPreset } from "./onedark.js";
+export { githubDarkPalette, githubPreset } from "./github.js";

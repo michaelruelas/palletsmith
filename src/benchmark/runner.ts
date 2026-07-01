@@ -9,7 +9,16 @@ import type { PluginInput } from "../plugins/types.js";
 import { draculaPreset } from "../presets/dracula.js";
 import { oneDarkPreset } from "../presets/onedark.js";
 import { evergreenPreset } from "../presets/evergreen.js";
+import { githubPreset } from "../presets/github.js";
 import type { PresetPack } from "../presets/index.js";
+
+interface Comparison {
+  score: number;
+  total: number;
+  matched: number;
+  closeCount: number;
+  exactCount: number;
+}
 
 interface AppResult {
   keys: number;
@@ -33,11 +42,13 @@ interface BenchmarkOutput {
 }
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const FIXTURE_DIR = resolve(__dirname, "../../test/mapping/fixtures");
 
 const PRESET_PACKS: PresetPack[] = [
   draculaPreset,
   oneDarkPreset,
   evergreenPreset,
+  githubPreset,
 ];
 
 function buildMasterSchema(palette: Palette, name: string): MasterSchema {
@@ -103,7 +114,10 @@ function colorDistance(a: string, b: string): number {
   return Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
 }
 
-function compareVscodeThemes(generated: Record<string, string>, official: Record<string, string>): { score: number; total: number; matched: number; closeCount: number; exactCount: number } {
+function compareColorMaps(
+  generated: Record<string, string>,
+  official: Record<string, string>,
+): Comparison {
   const common = Object.keys(generated).filter((k) => k in official);
   let matched = 0;
   let closeCount = 0;
@@ -133,31 +147,114 @@ function compareVscodeThemes(generated: Record<string, string>, official: Record
   };
 }
 
+// ---------- Fixture loaders ----------
+
 function tryLoadVscodeFixture(themeName: string): Record<string, string> | null {
   const slug = themeName.toLowerCase().replace(/[^a-z0-9]+/g, "");
-  const fixturePath = resolve(__dirname, "../../test/mapping/fixtures");
+  const fp = resolve(FIXTURE_DIR, `${slug}_vscode.json`);
+  if (!existsSync(fp)) return null;
+  try {
+    const raw = JSON.parse(readFileSync(fp, "utf-8"));
+    const colors: Record<string, string> = {};
+    for (const [k, v] of Object.entries(raw.colors as Record<string, unknown>)) {
+      const vs = String(v);
+      if (vs.startsWith("#")) colors[k] = vs.toLowerCase();
+    }
+    return colors;
+  } catch {
+    return null;
+  }
+}
 
-  const candidates = [
-    resolve(fixturePath, `${slug}.json`),
-  ];
-
-  for (const fp of candidates) {
-    if (existsSync(fp)) {
-      try {
-        const raw = JSON.parse(readFileSync(fp, "utf-8"));
-        const colors: Record<string, string> = {};
-        for (const [k, v] of Object.entries(raw.colors as Record<string, unknown>)) {
-          const vs = String(v);
-          if (vs.startsWith("#")) colors[k] = vs.toLowerCase();
-        }
-        return colors;
-      } catch {
-        return null;
+function flattenZedStyle(obj: unknown, prefix = ""): Record<string, string> {
+  const result: Record<string, string> = {};
+  if (obj && typeof obj === "object" && !Array.isArray(obj)) {
+    for (const [key, val] of Object.entries(obj as Record<string, unknown>)) {
+      const path = prefix ? `${prefix}.${key}` : key;
+      if (typeof val === "string" && /^#[0-9a-fA-F]{3,8}$/.test(val)) {
+        result[path] = val.toLowerCase();
+      } else if (val && typeof val === "object" && !Array.isArray(val)) {
+        Object.assign(result, flattenZedStyle(val, path));
       }
     }
   }
-  return null;
+  return result;
 }
+
+function tryLoadZedFixture(themeName: string): Record<string, string> | null {
+  const slug = themeName.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const fp = resolve(FIXTURE_DIR, `${slug}_zed.json`);
+  if (!existsSync(fp)) return null;
+  try {
+    const raw = JSON.parse(readFileSync(fp, "utf-8"));
+    const style = raw.themes?.[0]?.style;
+    if (!style) return null;
+    return flattenZedStyle(style);
+  } catch {
+    return null;
+  }
+}
+
+function compareZedThemes(
+  generatedContent: string,
+  fixtureColors: Record<string, string>,
+): Comparison | null {
+  try {
+    const gen = JSON.parse(generatedContent);
+    const genStyle = gen.themes?.[0]?.style;
+    if (!genStyle) return null;
+    const genFlat = flattenZedStyle(genStyle);
+    return compareColorMaps(genFlat, fixtureColors);
+  } catch {
+    return null;
+  }
+}
+
+function parseGhosttyConfig(text: string): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+
+    const eqIdx = trimmed.indexOf("=");
+    if (eqIdx === -1) continue;
+
+    let key = trimmed.slice(0, eqIdx).trim();
+    let val = trimmed.slice(eqIdx + 1).trim();
+
+    if (key === "palette") {
+      const parts = val.split("=") as [string, string];
+      key = `palette.${parts[0]}`;
+      val = parts[1]?.trim() ?? "";
+    }
+
+    if (val.startsWith("#")) {
+      result[key] = val.toLowerCase();
+    }
+  }
+  return result;
+}
+
+function tryLoadGhosttyFixture(themeName: string): Record<string, string> | null {
+  const slug = themeName.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const fp = resolve(FIXTURE_DIR, `${slug}_ghostty.conf`);
+  if (!existsSync(fp)) return null;
+  try {
+    return parseGhosttyConfig(readFileSync(fp, "utf-8"));
+  } catch {
+    return null;
+  }
+}
+
+function compareGhosttyThemes(
+  generatedContent: string,
+  fixtureColors: Record<string, string>,
+): Comparison | null {
+  const gen = parseGhosttyConfig(generatedContent);
+  return compareColorMaps(gen, fixtureColors);
+}
+
+// ---------- Main ----------
 
 async function run(): Promise<void> {
   const results: ThemeResult[] = [];
@@ -182,12 +279,40 @@ async function run(): Promise<void> {
           const fixture = tryLoadVscodeFixture(theme.name);
           if (fixture) {
             const vscOutput = JSON.parse(outputs[0]!.content);
-            const comparison = compareVscodeThemes(vscOutput.colors, fixture);
-            result.score = comparison.score;
-            result.total = comparison.total;
-            result.matched = comparison.matched;
-            result.closeCount = comparison.closeCount;
-            result.exactCount = comparison.exactCount;
+            const cmp = compareColorMaps(vscOutput.colors, fixture);
+            result.score = cmp.score;
+            result.total = cmp.total;
+            result.matched = cmp.matched;
+            result.closeCount = cmp.closeCount;
+            result.exactCount = cmp.exactCount;
+          }
+        }
+
+        if (id === "zed") {
+          const fixture = tryLoadZedFixture(theme.name);
+          if (fixture) {
+            const cmp = compareZedThemes(outputs[0]!.content, fixture);
+            if (cmp) {
+              result.score = cmp.score;
+              result.total = cmp.total;
+              result.matched = cmp.matched;
+              result.closeCount = cmp.closeCount;
+              result.exactCount = cmp.exactCount;
+            }
+          }
+        }
+
+        if (id === "ghostty") {
+          const fixture = tryLoadGhosttyFixture(theme.name);
+          if (fixture) {
+            const cmp = compareGhosttyThemes(outputs[0]!.content, fixture);
+            if (cmp) {
+              result.score = cmp.score;
+              result.total = cmp.total;
+              result.matched = cmp.matched;
+              result.closeCount = cmp.closeCount;
+              result.exactCount = cmp.exactCount;
+            }
           }
         }
 
