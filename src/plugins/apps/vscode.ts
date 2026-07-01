@@ -119,7 +119,7 @@ function buildColors(
     "panel.background": t.panelBackground,
     "panel.foreground": t.textPrimary,
     "panel.border": themeName === "Dracula" ? t.textAccent : t.panelBorder,
-    "panelTitle.activeBorder": themeName === "Dracula" ? t.textAccent : t.borderFocused,
+    "panelTitle.activeBorder": themeName === "Dracula" ? term.magenta : t.borderFocused,
 
     "statusBar.background": t.statusBarBackground,
     "statusBar.foreground": t.textPrimary,
@@ -134,8 +134,8 @@ function buildColors(
     "activityBar.background": t.activityBarBackground,
     "activityBar.foreground": t.activityBarForeground,
     "activityBar.inactiveForeground": t.textMuted,
-    "activityBarBadge.background": t.textAccent,
-    "activityBarBadge.foreground": t.buttonForeground,
+    "activityBarBadge.background": themeName === "Dracula" ? term.magenta : t.textAccent,
+    "activityBarBadge.foreground": themeName === "Dracula" ? t.textPrimary : t.buttonForeground,
 
     "sideBar.background": t.sidebarBackground,
     "sideBar.foreground": t.textPrimary,
@@ -195,7 +195,7 @@ function buildColors(
     "terminal.ansiWhite": term.white,
     "terminal.ansiBrightWhite": term.brightWhite,
 
-    "gitDecoration.modifiedResourceForeground": status.info,
+    "gitDecoration.modifiedResourceForeground": themeName === "Dracula" ? term.cyan : status.info,
     "gitDecoration.deletedResourceForeground": status.error,
     "gitDecoration.addedResourceForeground": status.success,
     "gitDecoration.untrackedResourceForeground": status.success,
