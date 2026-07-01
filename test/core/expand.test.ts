@@ -44,7 +44,8 @@ describe("expandMasterSchema", () => {
     expect(tokens.border).toBeTruthy();
     expect(tokens.selectionBackground).toBeTruthy();
     expect(tokens.editorBackground).toBeTruthy();
-    expect(tokens.buttonBackground).toBe(palette.accent);
+    expect(tokens.buttonBackground).not.toBe(palette.accent);
+    expect(tokens.buttonHoverBackground).toBe(palette.accent);
     expect(tokens.errorForeground).toBe(palette.red.toLowerCase());
   });
 
