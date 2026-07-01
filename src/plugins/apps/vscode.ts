@@ -124,7 +124,7 @@ function buildColors(
 
     "statusBar.background": t.statusBarBackground,
     "statusBar.foreground": t.textPrimary,
-    "statusBar.debuggingBackground": status.error,
+    "statusBar.debuggingBackground": themeName === "One Dark Pro" ? "#cc6633" : status.error,
     "statusBar.noFolderBackground": t.statusBarBackground,
 
     "titleBar.activeBackground": t.titleBarBackground,
@@ -133,7 +133,7 @@ function buildColors(
     "titleBar.inactiveForeground": t.textMuted,
 
     "activityBar.background": themeName === "Dracula" ? "#343746" : t.activityBarBackground,
-    "activityBar.foreground": t.activityBarForeground,
+    "activityBar.foreground": themeName === "One Dark Pro" ? "#d7dae0" : t.activityBarForeground,
     "activityBar.inactiveForeground": t.textMuted,
     "activityBarBadge.background": themeName === "Dracula" ? term.magenta : themeName === "One Dark Pro" ? "#4d78cc" : t.textAccent,
     "activityBarBadge.foreground": themeName === "Dracula" ? t.textPrimary : themeName === "One Dark Pro" ? "#f8fafd" : t.buttonForeground,
@@ -150,11 +150,11 @@ function buildColors(
     "inputOption.activeBorder": t.borderFocused,
 
     "dropdown.background": themeName === "Dracula" ? "#343746" : t.dropdownBackground,
-    "dropdown.border": themeName === "Dracula" ? "#191a21" : t.dropdownBorder,
+    "dropdown.border": themeName === "Dracula" ? "#191a21" : themeName === "One Dark Pro" ? "#21252b" : t.dropdownBorder,
     "dropdown.foreground": t.inputForeground,
 
     "list.activeSelectionBackground": t.selectionBackground,
-    "list.activeSelectionForeground": t.textPrimary,
+    "list.activeSelectionForeground": themeName === "One Dark Pro" ? "#d7dae0" : t.textPrimary,
     "list.hoverBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.hoverBackground,
     "list.hoverForeground": t.textPrimary,
     "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.surface,
@@ -166,9 +166,9 @@ function buildColors(
 
     "tab.activeBackground": t.tabActiveBackground,
     "tab.inactiveBackground": t.tabInactiveBackground,
-    "tab.activeForeground": t.textPrimary,
+    "tab.activeForeground": themeName === "One Dark Pro" ? "#dcdcdc" : t.textPrimary,
     "tab.inactiveForeground": t.textMuted,
-    "tab.border": themeName === "Dracula" ? "#191a21" : t.border,
+    "tab.border": themeName === "Dracula" ? "#191a21" : themeName === "One Dark Pro" ? "#181a1f" : t.border,
     "tab.hoverBackground": t.hoverBackground,
 
     "focusBorder": themeName === "Dracula" ? t.textMuted : themeName === "One Dark Pro" ? base24.base02 : t.focusRing,
@@ -193,7 +193,7 @@ function buildColors(
     "terminal.ansiBrightMagenta": term.brightMagenta,
     "terminal.ansiCyan": term.cyan,
     "terminal.ansiBrightCyan": term.brightCyan,
-    "terminal.ansiWhite": term.white,
+    "terminal.ansiWhite": themeName === "One Dark Pro" ? "#d7dae0" : term.white,
     "terminal.ansiBrightWhite": term.brightWhite,
 
     "gitDecoration.modifiedResourceForeground": themeName === "Dracula" ? term.cyan : status.info,
