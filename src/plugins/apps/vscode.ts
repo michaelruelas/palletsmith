@@ -159,7 +159,7 @@ function buildColors(
     "list.hoverForeground": t.textPrimary,
     "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.surface,
     "list.focusBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.selectionBackground,
-    "list.highlightForeground": term.cyan,
+    "list.highlightForeground": themeName === "Dracula" ? term.cyan : t.textPrimary,
 
     "button.background": themeName === "Dracula" ? base24.base02 : t.buttonBackground,
     "button.foreground": t.buttonForeground,
@@ -171,7 +171,7 @@ function buildColors(
     "tab.border": themeName === "Dracula" ? "#191a21" : t.border,
     "tab.hoverBackground": t.hoverBackground,
 
-    "focusBorder": themeName === "Dracula" ? t.textMuted : t.focusRing,
+    "focusBorder": themeName === "Dracula" ? t.textMuted : themeName === "One Dark Pro" ? base24.base02 : t.focusRing,
     "foreground": t.textPrimary,
     "descriptionForeground": t.textPrimary,
     "textLink.foreground": t.linkForeground,

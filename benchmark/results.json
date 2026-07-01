@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T09:25:46.671Z",
-  "commit": "bbe0da2",
+  "generatedAt": "2026-07-01T09:28:49.889Z",
+  "commit": "ab9a338",
   "results": [
     {
       "theme": "Dracula",
@@ -6842,15 +6842,15 @@
         "vscode": {
           "keys": 178,
           "comparison": {
-            "overallCloseness": 78,
-            "meanDistance": 34.77,
-            "medianDistance": 22.69,
+            "overallCloseness": 79,
+            "meanDistance": 32.5,
+            "medianDistance": 22.58,
             "maxDistance": 216.75,
             "minDistance": 0,
-            "stdDevDistance": 40.09,
+            "stdDevDistance": 37.2,
             "total": 73,
             "exactCount": 19,
-            "nearCount": 1,
+            "nearCount": 2,
             "closeCount": 4,
             "buckets": [
               {
@@ -6884,9 +6884,10 @@
                 "label": "near",
                 "minDist": 0.1,
                 "maxDist": 2,
-                "count": 1,
+                "count": 2,
                 "keys": [
-                  "panel.border"
+                  "panel.border",
+                  "focusBorder"
                 ]
               },
               {
@@ -6943,7 +6944,7 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 19,
+                "count": 18,
                 "keys": [
                   "editor.selectionBackground",
                   "editorIndentGuide.activeBackground1",
@@ -6959,7 +6960,6 @@
                   "list.highlightForeground",
                   "tab.activeForeground",
                   "tab.border",
-                  "focusBorder",
                   "terminal.ansiYellow",
                   "terminal.ansiBrightYellow",
                   "terminal.ansiWhite",
@@ -7559,16 +7559,16 @@
               {
                 "key": "list.highlightForeground",
                 "expected": "#ecebeb",
-                "actual": "#56b6c2",
-                "distance": 164.29,
-                "closeness": 0,
-                "deltaR": -150,
-                "deltaG": -53,
-                "deltaB": -41,
-                "deltaH": 187,
-                "deltaS": 44,
-                "deltaL": -37,
-                "luminanceDelta": 0.4391831452811483
+                "actual": "#abb2bf",
+                "distance": 97.01,
+                "closeness": 35,
+                "deltaR": -65,
+                "deltaG": -57,
+                "deltaB": -44,
+                "deltaH": 219,
+                "deltaS": 11,
+                "deltaL": -21,
+                "luminanceDelta": 0.3898738271147745
               },
               {
                 "key": "button.background",
@@ -7657,16 +7657,16 @@
               {
                 "key": "focusBorder",
                 "expected": "#3e4452",
-                "actual": "#4a7ba4",
-                "distance": 99.46,
-                "closeness": 34,
-                "deltaR": 12,
-                "deltaG": 55,
-                "deltaB": 82,
-                "deltaH": -15,
-                "deltaS": 24,
-                "deltaL": 19,
-                "luminanceDelta": 0.12534526081165293
+                "actual": "#3e4451",
+                "distance": 1,
+                "closeness": 99,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": -1,
+                "deltaH": -1,
+                "deltaS": -1,
+                "deltaL": 0,
+                "luminanceDelta": 0.00015115101871492065
               },
               {
                 "key": "descriptionForeground",
@@ -8007,20 +8007,6 @@
                 "luminanceDelta": 0.5110321465191355
               },
               {
-                "key": "list.highlightForeground",
-                "expected": "#ecebeb",
-                "actual": "#56b6c2",
-                "distance": 164.29,
-                "closeness": 0,
-                "deltaR": -150,
-                "deltaG": -53,
-                "deltaB": -41,
-                "deltaH": 187,
-                "deltaS": 44,
-                "deltaL": -37,
-                "luminanceDelta": 0.4391831452811483
-              },
-              {
                 "key": "activityBarBadge.foreground",
                 "expected": "#f8fafd",
                 "actual": "#abb2bf",
@@ -8049,18 +8035,18 @@
                 "luminanceDelta": 0.15175316862991012
               },
               {
-                "key": "focusBorder",
-                "expected": "#3e4452",
-                "actual": "#4a7ba4",
-                "distance": 99.46,
-                "closeness": 34,
-                "deltaR": 12,
-                "deltaG": 55,
-                "deltaB": 82,
-                "deltaH": -15,
-                "deltaS": 24,
-                "deltaL": 19,
-                "luminanceDelta": 0.12534526081165293
+                "key": "list.highlightForeground",
+                "expected": "#ecebeb",
+                "actual": "#abb2bf",
+                "distance": 97.01,
+                "closeness": 35,
+                "deltaR": -65,
+                "deltaG": -57,
+                "deltaB": -44,
+                "deltaH": 219,
+                "deltaS": 11,
+                "deltaL": -21,
+                "luminanceDelta": 0.3898738271147745
               },
               {
                 "key": "editor.selectionBackground",
@@ -8131,11 +8117,39 @@
                 "deltaS": 14,
                 "deltaL": -15,
                 "luminanceDelta": 0.27309045675281096
+              },
+              {
+                "key": "statusBar.debuggingBackground",
+                "expected": "#cc6633",
+                "actual": "#e06c75",
+                "distance": 69.22,
+                "closeness": 54,
+                "deltaR": 20,
+                "deltaG": 6,
+                "deltaB": 66,
+                "deltaH": 335,
+                "deltaS": 5,
+                "deltaL": 15,
+                "luminanceDelta": 0.05277644029249828
               }
             ],
             "bestKeys": [
               {
                 "key": "panel.border",
+                "expected": "#3e4452",
+                "actual": "#3e4451",
+                "distance": 1,
+                "closeness": 99,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": -1,
+                "deltaH": -1,
+                "deltaS": -1,
+                "deltaL": 0,
+                "luminanceDelta": 0.00015115101871492065
+              },
+              {
+                "key": "focusBorder",
                 "expected": "#3e4452",
                 "actual": "#3e4451",
                 "distance": 1,
@@ -8259,20 +8273,6 @@
                 "deltaS": 0,
                 "deltaL": -3,
                 "luminanceDelta": 0.021552612638731664
-              },
-              {
-                "key": "activityBar.background",
-                "expected": "#282c34",
-                "actual": "#21252b",
-                "distance": 13.38,
-                "closeness": 91,
-                "deltaR": -7,
-                "deltaG": -7,
-                "deltaB": -9,
-                "deltaH": -4,
-                "deltaS": 0,
-                "deltaL": -3,
-                "luminanceDelta": 0.006795268998103798
               }
             ],
             "byCategory": {
@@ -8358,8 +8358,8 @@
               },
               "list": {
                 "count": 7,
-                "meanDistance": 51.57,
-                "meanCloseness": 67
+                "meanDistance": 41.96,
+                "meanCloseness": 72
               },
               "button": {
                 "count": 1,
@@ -8373,8 +8373,8 @@
               },
               "general": {
                 "count": 2,
-                "meanDistance": 49.73,
-                "meanCloseness": 67
+                "meanDistance": 0.5,
+                "meanCloseness": 99.5
               },
               "textLink": {
                 "count": 1,
@@ -11302,12 +11302,12 @@
         "vscode": {
           "keys": 178,
           "comparison": {
-            "overallCloseness": 66,
-            "meanDistance": 55.72,
+            "overallCloseness": 65,
+            "meanDistance": 57.33,
             "medianDistance": 33.06,
             "maxDistance": 241.42,
             "minDistance": 0,
-            "stdDevDistance": 61.42,
+            "stdDevDistance": 63.71,
             "total": 83,
             "exactCount": 23,
             "nearCount": 1,
@@ -12070,16 +12070,16 @@
               {
                 "key": "list.highlightForeground",
                 "expected": "#2f81f7",
-                "actual": "#39c5cf",
-                "distance": 79.52,
-                "closeness": 47,
-                "deltaR": 10,
-                "deltaG": 68,
-                "deltaB": -40,
-                "deltaH": -31,
-                "deltaS": -32,
-                "deltaL": -6,
-                "luminanceDelta": 0.22287103978804707
+                "actual": "#e6edf3",
+                "distance": 212.53,
+                "closeness": 0,
+                "deltaR": 183,
+                "deltaG": 108,
+                "deltaB": -4,
+                "deltaH": -7,
+                "deltaS": -58,
+                "deltaL": 35,
+                "luminanceDelta": 0.6084218065844708
               },
               {
                 "key": "button.background",
@@ -12630,6 +12630,20 @@
                 "luminanceDelta": 0.001331634025731443
               },
               {
+                "key": "list.highlightForeground",
+                "expected": "#2f81f7",
+                "actual": "#e6edf3",
+                "distance": 212.53,
+                "closeness": 0,
+                "deltaR": 183,
+                "deltaG": 108,
+                "deltaB": -4,
+                "deltaH": -7,
+                "deltaS": -58,
+                "deltaL": 35,
+                "luminanceDelta": 0.6084218065844708
+              },
+              {
                 "key": "list.focusBackground",
                 "expected": "#388bfd26",
                 "actual": "#1f354f",
@@ -12726,20 +12740,6 @@
                 "deltaS": 13,
                 "deltaL": -36,
                 "luminanceDelta": 0.16786910284911433
-              },
-              {
-                "key": "list.hoverBackground",
-                "expected": "#6e76811a",
-                "actual": "#1e2329",
-                "distance": 145.03,
-                "closeness": 3,
-                "deltaR": -80,
-                "deltaG": -83,
-                "deltaB": -88,
-                "deltaH": -2,
-                "deltaS": 7,
-                "deltaL": -33,
-                "luminanceDelta": 0.16218664299574376
               }
             ],
             "bestKeys": [
@@ -12967,8 +12967,8 @@
               },
               "list": {
                 "count": 7,
-                "meanDistance": 98.91,
-                "meanCloseness": 39.14
+                "meanDistance": 117.91,
+                "meanCloseness": 32.43
               },
               "button": {
                 "count": 2,
