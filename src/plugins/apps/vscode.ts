@@ -157,7 +157,7 @@ function buildColors(
     "list.hoverForeground": t.textPrimary,
     "list.inactiveSelectionBackground": t.surface,
     "list.focusBackground": t.selectionBackground,
-    "list.highlightForeground": "#f0f0f0",
+    "list.highlightForeground": t.textAccent,
 
     "button.background": t.buttonBackground,
     "button.foreground": t.buttonForeground,
