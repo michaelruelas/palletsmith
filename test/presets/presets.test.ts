@@ -1,6 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import { evergreenPreset, evergreenDark, evergreenLight } from "../../src/presets/evergreen.ts";
 import { draculaPreset, draculaPalette } from "../../src/presets/dracula.ts";
+import { oneDarkPalette, oneDarkPreset } from "../../src/presets/onedark.ts";
+import { githubDarkPalette, githubPreset } from "../../src/presets/github.ts";
 
 describe("evergreenPreset", () => {
   test("has correct structure", () => {
@@ -35,11 +37,39 @@ describe("draculaPreset", () => {
   });
 });
 
+describe("oneDarkPreset", () => {
+  test("has correct structure", () => {
+    expect(oneDarkPreset.name).toBe("One Dark Pro");
+    expect(oneDarkPreset.themes).toHaveLength(1);
+  });
+
+  test("oneDarkPalette has correct values", () => {
+    expect(oneDarkPalette.bg).toBe("#282c34");
+    expect(oneDarkPalette.accent).toBe("#61afef");
+    expect(Object.keys(oneDarkPalette)).toHaveLength(14);
+  });
+});
+
+describe("githubPreset", () => {
+  test("has correct structure", () => {
+    expect(githubPreset.name).toBe("GitHub");
+    expect(githubPreset.themes).toHaveLength(1);
+  });
+
+  test("githubDarkPalette has correct values", () => {
+    expect(githubDarkPalette.bg).toBe("#0d1117");
+    expect(githubDarkPalette.accent).toBe("#58a6ff");
+    expect(Object.keys(githubDarkPalette)).toHaveLength(14);
+  });
+});
+
 describe("all presets produce valid themes", () => {
   const presets = [
     { name: "Evergreen Dark", palette: evergreenDark },
     { name: "Evergreen Light", palette: evergreenLight },
     { name: "Dracula", palette: draculaPalette },
+    { name: "One Dark Pro", palette: oneDarkPalette },
+    { name: "GitHub", palette: githubDarkPalette },
   ];
 
   for (const { name, palette } of presets) {
