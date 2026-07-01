@@ -153,7 +153,7 @@ function buildColors(
     "dropdown.border": themeName === "Dracula" ? "#191a21" : themeName === "One Dark Pro" ? "#21252b" : t.dropdownBorder,
     "dropdown.foreground": t.inputForeground,
 
-    "list.activeSelectionBackground": t.selectionBackground,
+    "list.activeSelectionBackground": themeName === "One Dark Pro" ? "#2c313a" : t.selectionBackground,
     "list.activeSelectionForeground": themeName === "One Dark Pro" ? "#d7dae0" : t.textPrimary,
     "list.hoverBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.hoverBackground,
     "list.hoverForeground": t.textPrimary,
@@ -185,7 +185,7 @@ function buildColors(
     "terminal.ansiBrightRed": term.brightRed,
     "terminal.ansiGreen": term.green,
     "terminal.ansiBrightGreen": term.brightGreen,
-    "terminal.ansiYellow": term.yellow,
+    "terminal.ansiYellow": themeName === "One Dark Pro" ? base24.base09 : term.yellow,
     "terminal.ansiBrightYellow": term.brightYellow,
     "terminal.ansiBlue": term.blue,
     "terminal.ansiBrightBlue": term.brightBlue,
@@ -204,7 +204,7 @@ function buildColors(
     "gitDecoration.conflictingResourceForeground": themeName === "Dracula" ? base24.base09 : status.warning,
     "gitDecoration.ignoredResourceForeground": t.textMuted,
 
-    "editorError.foreground": status.error,
+    "editorError.foreground": themeName === "One Dark Pro" ? "#c24038" : status.error,
     "editorWarning.foreground": themeName === "Dracula" ? term.cyan : base24.base09,
     "editorInfo.foreground": status.info,
     "editorHint.foreground": status.success,
