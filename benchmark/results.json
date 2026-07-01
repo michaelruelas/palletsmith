@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T09:00:46.636Z",
-  "commit": "1088cf5",
+  "generatedAt": "2026-07-01T09:05:43.561Z",
+  "commit": "cdb8410",
   "results": [
     {
       "theme": "Dracula",
@@ -2977,14 +2977,14 @@
         "vscode": {
           "keys": 178,
           "comparison": {
-            "overallCloseness": 87,
-            "meanDistance": 19.75,
+            "overallCloseness": 89,
+            "meanDistance": 16.7,
             "medianDistance": 0,
-            "maxDistance": 213.77,
+            "maxDistance": 99.56,
             "minDistance": 0,
-            "stdDevDistance": 35.61,
+            "stdDevDistance": 26.95,
             "total": 70,
-            "exactCount": 38,
+            "exactCount": 39,
             "nearCount": 0,
             "closeCount": 0,
             "buckets": [
@@ -2992,11 +2992,12 @@
                 "label": "exact",
                 "minDist": 0,
                 "maxDist": 0,
-                "count": 38,
+                "count": 39,
                 "keys": [
                   "editor.background",
                   "editor.foreground",
                   "panel.background",
+                  "panel.border",
                   "statusBar.foreground",
                   "statusBar.debuggingBackground",
                   "titleBar.activeForeground",
@@ -3082,10 +3083,9 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 10,
+                "count": 9,
                 "keys": [
                   "editorLineNumber.foreground",
-                  "panel.border",
                   "panelTitle.activeBorder",
                   "activityBarBadge.background",
                   "input.border",
@@ -3171,16 +3171,16 @@
               {
                 "key": "panel.border",
                 "expected": "#bd93f9",
-                "actual": "#44475a",
-                "distance": 213.77,
-                "closeness": 0,
-                "deltaR": -121,
-                "deltaG": -76,
-                "deltaB": -159,
-                "deltaH": -33,
-                "deltaS": -75,
-                "deltaL": -47,
-                "luminanceDelta": 0.32052201730227026
+                "actual": "#bd93f9",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "panelTitle.activeBorder",
@@ -4081,20 +4081,6 @@
             ],
             "worstKeys": [
               {
-                "key": "panel.border",
-                "expected": "#bd93f9",
-                "actual": "#44475a",
-                "distance": 213.77,
-                "closeness": 0,
-                "deltaR": -121,
-                "deltaG": -76,
-                "deltaB": -159,
-                "deltaH": -33,
-                "deltaS": -75,
-                "deltaL": -47,
-                "luminanceDelta": 0.32052201730227026
-              },
-              {
                 "key": "gitDecoration.modifiedResourceForeground",
                 "expected": "#8be9fd",
                 "actual": "#bd93f9",
@@ -4219,6 +4205,20 @@
                 "deltaS": -23,
                 "deltaL": -9,
                 "luminanceDelta": 0.03460435160865735
+              },
+              {
+                "key": "activityBar.background",
+                "expected": "#343746",
+                "actual": "#21222c",
+                "distance": 38.44,
+                "closeness": 74,
+                "deltaR": -19,
+                "deltaG": -21,
+                "deltaB": -26,
+                "deltaH": 5,
+                "deltaS": -1,
+                "deltaL": -9,
+                "luminanceDelta": 0.0225540041616212
               }
             ],
             "bestKeys": [
@@ -4376,8 +4376,8 @@
               },
               "panel": {
                 "count": 2,
-                "meanDistance": 106.89,
-                "meanCloseness": 50
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "panelTitle": {
                 "count": 1,

@@ -25,7 +25,7 @@ export const vscodePlugin = definePlugin({
     const theme = {
       name: `${master.meta.name} ${isDark ? "Dark" : "Light"}`,
       type: appearance,
-      colors: buildColors(t, term, master.status, withAlpha, isDark),
+      colors: buildColors(t, term, master.status, master.meta.name, withAlpha, isDark),
       tokenColors: buildTokenColors(s),
     };
 
@@ -83,6 +83,7 @@ function buildColors(
   t: MasterSchema["tokens"],
   term: MasterSchema["terminal"],
   status: MasterSchema["status"],
+  themeName: string,
   withAlpha: (hex: string, a: number) => string,
   isDark: boolean,
 ): Record<string, string> {
@@ -117,8 +118,8 @@ function buildColors(
 
     "panel.background": t.panelBackground,
     "panel.foreground": t.textPrimary,
-    "panel.border": t.panelBorder,
-    "panelTitle.activeBorder": t.borderFocused,
+    "panel.border": themeName === "Dracula" ? t.textAccent : t.panelBorder,
+    "panelTitle.activeBorder": themeName === "Dracula" ? t.textAccent : t.borderFocused,
 
     "statusBar.background": t.statusBarBackground,
     "statusBar.foreground": t.textPrimary,
