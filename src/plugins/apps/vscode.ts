@@ -135,8 +135,8 @@ function buildColors(
     "activityBar.background": themeName === "Dracula" ? "#343746" : t.activityBarBackground,
     "activityBar.foreground": t.activityBarForeground,
     "activityBar.inactiveForeground": t.textMuted,
-    "activityBarBadge.background": themeName === "Dracula" ? term.magenta : t.textAccent,
-    "activityBarBadge.foreground": themeName === "Dracula" ? t.textPrimary : t.buttonForeground,
+    "activityBarBadge.background": themeName === "Dracula" ? term.magenta : themeName === "One Dark Pro" ? "#4d78cc" : t.textAccent,
+    "activityBarBadge.foreground": themeName === "Dracula" ? t.textPrimary : themeName === "One Dark Pro" ? "#f8fafd" : t.buttonForeground,
 
     "sideBar.background": t.sidebarBackground,
     "sideBar.foreground": t.textPrimary,
