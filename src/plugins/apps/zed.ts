@@ -104,25 +104,25 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "ghost_element.selected": isOneDark ? "#2c313a" : (isGitHub ? "#6e76811f" : (isDracula ? withAlpha(t.textAccent, 0.14) : t.selectionBackground)),
     "ghost_element.disabled": isGitHub ? "#21262d" : (isDracula ? "#ff5555ff" : t.border),
     text: t.textPrimary,
-    "text.muted": t.textMuted,
+    "text.muted": isGitHub ? t.textPrimary : t.textMuted,
     "text.placeholder": isDracula ? "#C9A8F9" : (isGitHub ? "#6e7681" : t.textPlaceholder),
     "text.disabled": isDracula ? "#C9A8F950" : t.textDisabled,
-    "text.accent": t.textAccent,
+    "text.accent": isGitHub ? "#2f81f7" : t.textAccent,
     icon: isDracula ? t.textPrimary : (isGitHub ? t.textPrimary : t.iconAccent),
-    "icon.muted": isDracula ? withAlpha(t.textPrimary, 0.44) : t.iconMuted,
+    "icon.muted": isDracula ? withAlpha(t.textPrimary, 0.44) : (isGitHub ? "#6e7681" : t.iconMuted),
     "icon.disabled": isDracula ? withAlpha(t.textPrimary, 0.25) : t.textDisabled,
     "icon.placeholder": isDracula ? withAlpha(t.textPrimary, 0.31) : t.textDisabled,
-    "icon.accent": t.iconAccent,
+    "icon.accent": isGitHub ? "#2f81f7" : t.iconAccent,
     "debugger.accent": t.textAccent,
-    "status_bar.background": t.statusBarBackground,
+    "status_bar.background": isGitHub ? "#0d1117" : t.statusBarBackground,
     "title_bar.background": t.titleBarBackground,
     "title_bar.inactive_background": t.titleBarBackground,
     "toolbar.background": t.surface,
-    "tab_bar.background": isOneDark ? "#1e2227" : t.tabBarBackground,
-    "tab.inactive_background": isOneDark ? "#1e2227" : t.tabInactiveBackground,
+    "tab_bar.background": isOneDark ? "#1e2227" : (isGitHub ? "#010409" : t.tabBarBackground),
+    "tab.inactive_background": isOneDark ? "#1e2227" : (isGitHub ? "#010409" : t.tabInactiveBackground),
     "tab.active_background": isOneDark ? "#23272e" : t.tabActiveBackground,
     "search.match_background": isOneDark ? "#d19a6644" : (isGitHub ? "#f2cc604d" : (isDracula ? "#50fa7b50" : withAlpha(t.textAccent, 0.2))),
-    "panel.background": t.panelBackground,
+    "panel.background": isGitHub ? "#010409" : t.panelBackground,
     "panel.focused_border": isGitHub ? paletteBorder : (isDracula ? withAlpha(t.textAccent, 0.37) : t.panelBorder),
     "panel.indent_guide": isDracula ? withAlpha(t.textPrimary, 0.12) : t.editorIndentGuide,
     "panel.indent_guide_hover": isDracula ? withAlpha(t.textAccent, 0.21) : withAlpha(t.editorIndentGuide, 0.5),
@@ -143,8 +143,8 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "editor.background": t.editorBackground,
     "editor.gutter.background": t.editorGutterBackground,
     "editor.subheader.background": isGitHub ? "#161b22" : t.border,
-    "editor.active_line.background": isGitHub ? withAlpha(paletteMuted, 0.1) : (isDracula ? withAlpha(t.textAccent, 0.2) : t.background),
-    "editor.highlighted_line.background": isGitHub ? withAlpha(paletteMuted, 0.1) : t.background,
+    "editor.active_line.background": isGitHub ? "#6e76811a" : (isDracula ? withAlpha(t.textAccent, 0.2) : t.background),
+    "editor.highlighted_line.background": isGitHub ? "#6e76811a" : t.background,
     "editor.debugger_active_line.background": t.background,
     "editor.line_number": isGitHub ? "#6e7681" : (isDracula ? withAlpha(t.textPrimary, 0.31) : t.editorLineNumber),
     "editor.active_line_number": isDracula ? "#C9A8F9" : t.editorActiveLineNumber,
@@ -154,31 +154,31 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "editor.active_wrap_guide": isGitHub ? "#30363db3" : (isDracula ? withAlpha(t.textAccent, 0.4) : t.border),
     "editor.indent_guide": isDracula ? withAlpha(t.textPrimary, 0.12) : t.editorIndentGuide,
     "editor.indent_guide_active": isOneDark ? "#c8c8c859" : (isDracula ? withAlpha(t.textAccent, 0.31) : t.editorActiveIndentGuide),
-    "editor.document_highlight.read_background": isOneDark ? "#555a6345" : withAlpha(t.textAccent, 0.2),
-    "editor.document_highlight.write_background": isOneDark ? "#555a6345" : (isDracula ? "#44475a" : withAlpha(t.textAccent, 0.2)),
+    "editor.document_highlight.read_background": isOneDark ? "#555a6345" : (isGitHub ? "#2f81f74d" : withAlpha(t.textAccent, 0.2)),
+    "editor.document_highlight.write_background": isOneDark ? "#555a6345" : (isGitHub ? "#2f81f733" : (isDracula ? "#44475a" : withAlpha(t.textAccent, 0.2))),
     "editor.document_highlight.bracket_background": isDracula ? "#bd93f935" : withAlpha(t.textPrimary, 0.1),
     "terminal.background": isDracula ? "#14151b" : t.editorBackground,
     "terminal.foreground": t.editorForeground,
     "terminal.ansi.background": isDracula ? "#14151b" : term.background,
-    "terminal.bright_foreground": isDracula ? "#f9f9f5" : term.foreground,
+    "terminal.bright_foreground": isDracula ? "#f9f9f5" : (isGitHub ? "#ffffff" : term.foreground),
     "terminal.dim_foreground": isGitHub ? "#484f58" : (isDracula ? "#c6c6c2" : withAlpha(term.foreground, 0.5)),
     "terminal.ansi.black": isOneDark ? "#3f4451" : (isGitHub ? "#484f58" : (isDracula ? "#21222c" : term.black)),
-    "terminal.ansi.bright_black": isOneDark ? "#4f5666" : (isDracula ? "#919cbf" : term.brightBlack),
-    "terminal.ansi.red": isOneDark ? "#e05561" : term.red,
-    "terminal.ansi.bright_red": isOneDark ? "#ff616e" : term.brightRed,
-    "terminal.ansi.green": isOneDark ? "#8cc265" : term.green,
-    "terminal.ansi.bright_green": isOneDark ? "#a5e075" : term.brightGreen,
-    "terminal.ansi.yellow": isOneDark ? "#d18f52" : term.yellow,
-    "terminal.ansi.bright_yellow": isOneDark ? "#f0a45d" : term.brightYellow,
-    "terminal.ansi.blue": isOneDark ? "#4aa5f0" : (isDracula ? "#9580ff" : term.blue),
-    "terminal.ansi.bright_blue": isOneDark ? "#4dc4ff" : (isDracula ? "#D6ACFF" : term.brightBlue),
-    "terminal.ansi.magenta": isOneDark ? "#c162de" : term.magenta,
-    "terminal.ansi.bright_magenta": isOneDark ? "#de73ff" : term.brightMagenta,
-    "terminal.ansi.cyan": isOneDark ? "#42b3c2" : term.cyan,
-    "terminal.ansi.bright_cyan": isOneDark ? "#4cd1e0" : term.brightCyan,
+    "terminal.ansi.bright_black": isOneDark ? "#4f5666" : (isDracula ? "#919cbf" : (isGitHub ? "#6e7681" : term.brightBlack)),
+    "terminal.ansi.red": isOneDark ? "#e05561" : (isGitHub ? "#ff7b72" : term.red),
+    "terminal.ansi.bright_red": isOneDark ? "#ff616e" : (isGitHub ? "#ffa198" : term.brightRed),
+    "terminal.ansi.green": isOneDark ? "#8cc265" : (isGitHub ? "#3fb950" : term.green),
+    "terminal.ansi.bright_green": isOneDark ? "#a5e075" : (isGitHub ? "#56d364" : term.brightGreen),
+    "terminal.ansi.yellow": isOneDark ? "#d18f52" : (isGitHub ? "#d29922" : term.yellow),
+    "terminal.ansi.bright_yellow": isOneDark ? "#f0a45d" : (isGitHub ? "#e3b341" : term.brightYellow),
+    "terminal.ansi.blue": isOneDark ? "#4aa5f0" : (isDracula ? "#9580ff" : (isGitHub ? "#58a6ff" : term.blue)),
+    "terminal.ansi.bright_blue": isOneDark ? "#4dc4ff" : (isDracula ? "#D6ACFF" : (isGitHub ? "#79c0ff" : term.brightBlue)),
+    "terminal.ansi.magenta": isOneDark ? "#c162de" : (isGitHub ? "#bc8cff" : term.magenta),
+    "terminal.ansi.bright_magenta": isOneDark ? "#de73ff" : (isGitHub ? "#d2a8ff" : term.brightMagenta),
+    "terminal.ansi.cyan": isOneDark ? "#42b3c2" : (isGitHub ? "#39c5cf" : term.cyan),
+    "terminal.ansi.bright_cyan": isOneDark ? "#4cd1e0" : (isGitHub ? "#56d4dd" : term.brightCyan),
     "terminal.ansi.white": isOneDark ? "#d7dae0" : (isGitHub ? "#b1bac4" : term.white),
-    "terminal.ansi.bright_white": isOneDark ? "#e6e6e6" : term.brightWhite,
-    "link_text.hover": isGitHub ? "#2f81f7" : t.linkHoverForeground,
+    "terminal.ansi.bright_white": isOneDark ? "#e6e6e6" : (isGitHub ? "#ffffff" : term.brightWhite),
+    "link_text.hover": isDracula ? "#8be9fd" : (isGitHub ? "#2f81f7" : t.linkHoverForeground),
     "version_control.added": m.status.success,
     "version_control.deleted": m.status.error,
     "version_control.modified": m.status.warning,
@@ -188,22 +188,22 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "conflict": isGitHub ? "#f85149" : withAlpha(m.status.warning, 0.7),
     "conflict.background": null,
     "conflict.border": null,
-    "created": isOneDark ? "#a5e075" : m.status.success,
+    "created": isOneDark ? "#a5e075" : (isGitHub ? "#2ea043" : m.status.success),
     "created.background": null,
     "created.border": null,
     "deleted": isOneDark ? "#ff616e" : (isGitHub ? "#f85149" : m.status.error),
     "deleted.background": null,
     "deleted.border": null,
-    "error": isOneDark ? "#c24038" : m.status.error,
+    "error": isOneDark ? "#c24038" : (isGitHub ? "#f85149" : m.status.error),
     "error.background": isOneDark ? "#1e2227" : (isGitHub ? t.background : (isDracula ? t.surface : withAlpha(m.status.error, 0.1))),
     "error.border": isOneDark ? "#a03237" : (isGitHub ? withAlpha(paletteBorder, 0.7) : m.status.error),
-    "hidden": isDracula ? "#414754" : t.textMuted,
+    "hidden": isDracula ? "#414754" : (isGitHub ? "#6e7681" : t.textMuted),
     "hidden.background": null,
     "hidden.border": null,
-    "hint": isOneDark ? "#7a849c" : t.textMuted,
+    "hint": isOneDark ? "#7a849c" : (isGitHub ? "#6e7681" : t.textMuted),
     "hint.background": null,
     "hint.border": isGitHub ? withAlpha(paletteBorder, 0.7) : null,
-    "ignored": isOneDark ? "#636b78" : (isDracula ? withAlpha(t.textPrimary, 0.31) : withAlpha(t.textMuted, 0.3)),
+    "ignored": isOneDark ? "#636b78" : (isDracula ? withAlpha(t.textPrimary, 0.31) : (isGitHub ? "#6e76814d" : withAlpha(t.textMuted, 0.3))),
     "ignored.background": null,
     "ignored.border": null,
     "info": isDracula ? "#73ece5" : (isOneDark ? "#61afef" : (isGitHub ? base24.base0A : m.status.info)),
@@ -212,13 +212,13 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     "modified": isDracula ? "#a2edfd" : (isOneDark ? "#e5c07b" : (isGitHub ? base24.base0A : m.status.info)),
     "modified.background": null,
     "modified.border": null,
-    "predictive": isDracula ? "#c6c6c2" : (isOneDark ? "#4D5970" : t.textMuted),
+    "predictive": isDracula ? "#c6c6c2" : (isOneDark ? "#4D5970" : (isGitHub ? "#6e7681" : t.textMuted)),
     "predictive.background": null,
     "predictive.border": isGitHub ? withAlpha(paletteBorder, 0.7) : null,
-    "renamed": isDracula ? "#8be9fd" : m.status.success,
+    "renamed": isDracula ? "#8be9fd" : (isGitHub ? "#2ea043" : m.status.success),
     "renamed.background": null,
     "renamed.border": null,
-    "success": m.status.success,
+    "success": isGitHub ? "#2ea043" : m.status.success,
     "success.background": null,
     "success.border": null,
     "unreachable": isDracula ? "#959591" : (isGitHub ? "#484f58" : m.status.error),
@@ -259,27 +259,30 @@ function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema, themeName
     result["number"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
     result["boolean"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
     result["constant"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
-    result["type"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["type"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
     result["keyword"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["preproc"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["embedded"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["variant"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["variant"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
+    result["attribute"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
     result["tag"] = { color: "#7ee787", background_color: null, font_style: null, font_weight: null };
     result["stringEscape"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["punctuation"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["punctuation.bracket"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
     result["punctuation.delimiter"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
     result["punctuation.delimiter.jsx"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["punctuation.list_marker"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["punctuation.list_marker"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
     result["punctuation.special"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["operator"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
     result["label"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
     result["constructor"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["comment"] = { color: "#7d8590", background_color: null, font_style: null, font_weight: null };
+    result["commentDoc"] = { color: "#7d8590", background_color: null, font_style: null, font_weight: null };
   }
 
   if (isDracula) {
     result["string"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
-    result["number"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["number"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
     result["punctuation"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
     result["operator"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
     result["preproc"] = { color: palette.muted, background_color: null, font_style: null, font_weight: null };
@@ -309,10 +312,10 @@ function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema, themeName
     result["tag"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
     result["emphasis"] = { color: palette.yellow, background_color: null, font_style: "italic", font_weight: null };
     result["emphasisStrong"] = { color: palette.orange, background_color: null, font_style: null, font_weight: 700 };
-    result["enum"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["constant"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["title"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: 600 };
-    result["variant"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["enum"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
+    result["constant"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
+    result["title"] = { color: palette.accent, background_color: null, font_style: null, font_weight: 600 };
+    result["variant"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
     result["boolean"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
     result["stringEscape"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
   }
