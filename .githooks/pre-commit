@@ -1,0 +1,23 @@
+#!/bin/sh
+# Pre-commit hook: run typecheck and tests on staged files
+
+echo "🔍 Running pre-commit checks..."
+
+# Check for TypeScript errors
+echo "  📝 Type checking..."
+bun run typecheck
+if [ $? -ne 0 ]; then
+  echo "❌ Type check failed. Fix errors before committing."
+  exit 1
+fi
+
+# Run tests
+echo "  🧪 Running tests..."
+bun test
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Fix failures before committing."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"
+exit 0

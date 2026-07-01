@@ -149,7 +149,7 @@ export function relativeLuminance(rgb: RGB): number {
   const [r, g, b] = [rgb.r / 255, rgb.g / 255, rgb.b / 255].map((c) => {
     return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
   });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return 0.2126 * (r ?? 0) + 0.7152 * (g ?? 0) + 0.0722 * (b ?? 0);
 }
 
 /**

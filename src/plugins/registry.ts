@@ -1,44 +1,55 @@
-import { zedPlugin } from "./zed.js";
-import { ghosttyPlugin } from "./ghostty.js";
-import { vscodePlugin } from "./vscode.js";
-import { chromePlugin } from "./chrome.js";
-import { openchamberPlugin } from "./openchamber.js";
 import type { AppPlugin, AppRegistry, PluginOutput } from "./types.js";
 import type { MasterSchema } from "../core/types.js";
+import type { PluginSource } from "./manifest.js";
+import { parsePluginSource } from "./manifest.js";
+import { PluginLoader } from "./loader.js";
 
-export const builtinPlugins: AppRegistry = {
-  zed: zedPlugin,
-  ghostty: ghosttyPlugin,
-  vscode: vscodePlugin,
-  chrome: chromePlugin,
-  openchamber: openchamberPlugin,
-} as const;
+const loader = new PluginLoader();
 
-export type BuiltinPluginId = keyof typeof builtinPlugins;
-
-export function resolvePlugin(id: string): AppPlugin {
-  if (id in builtinPlugins) {
-    return builtinPlugins[id as BuiltinPluginId] as AppPlugin;
+/**
+ * Resolve a plugin by ID or source descriptor.
+ * First tries the bundled palletsmith-plugins package, then falls through to generic loading.
+ */
+export async function resolvePlugin(id: string): Promise<AppPlugin> {
+  try {
+    const { registry } = await import("palletsmith-plugins");
+    if (id in registry) {
+      return registry[id as keyof typeof registry] as AppPlugin;
+    }
+  } catch {
+    // palletsmith-plugins not installed; fall through to generic loader
   }
-  throw new Error(
-    `Unknown plugin: "${id}". Available: ${Object.keys(builtinPlugins).join(", ")}`
-  );
+
+  return resolveExternalPlugin(id);
 }
 
-export function listPlugins(): Array<{
+async function resolveExternalPlugin(input: string): Promise<AppPlugin> {
+  const source = parsePluginSource(input);
+  return loader.load(source);
+}
+
+/**
+ * List all available plugins (from palletsmith-plugins if installed).
+ */
+export async function listPlugins(): Promise<Array<{
   id: string;
   name: string;
   version: string;
   description: string;
   consumes: string[];
-}> {
-  return Object.entries(builtinPlugins).map(([id, plugin]) => ({
-    id,
-    name: plugin.name,
-    version: plugin.version,
-    description: plugin.description,
-    consumes: plugin.consumes,
-  }));
+}>> {
+  try {
+    const { registry } = await import("palletsmith-plugins");
+    return Object.entries(registry).map(([id, plugin]) => ({
+      id,
+      name: plugin.name,
+      version: plugin.version,
+      description: plugin.description,
+      consumes: plugin.consumes,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export async function runPlugin(
@@ -59,4 +70,8 @@ export async function runPlugins(
     results.push({ pluginId: plugin.id, outputs });
   }
   return results;
+}
+
+export function clearPluginCache(): void {
+  loader.clearCache();
 }

@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { resolvePalette } from "../core/config.js";
-import { deriveBase24 } from "../core/derive.js";
-import { expandMasterSchema } from "../core/expand.js";
-import { validatePalette } from "../core/validate.js";
-import { builtinPlugins, listPlugins, runPlugins } from "../plugins/registry.js";
 import type { MasterSchema } from "../core/types.js";
+import type { AppPlugin } from "../plugins/types.js";
 
 const program = new Command();
 
@@ -39,14 +35,15 @@ program
   .command("list")
   .description("List available plugins and presets")
   .option("--category <category>", "Filter by category: apps, presets, all")
-  .action((opts) => {
+  .action(async (opts) => {
     const category = opts.category ?? "all";
 
     if (category === "apps" || category === "all") {
-      console.log("\n📦 Built-in App Plugins:");
-      const plugins = listPlugins();
+      const { listPlugins } = await import("../plugins/registry.js");
+      const plugins = await listPlugins();
+      console.log("\n📦 App Plugins:");
       if (plugins.length === 0) {
-        console.log("  (none loaded yet)");
+        console.log("  (none found — install palletsmith-plugins or add external sources)");
       } else {
         console.log(`  ${plugins.length} plugin(s) available:`);
         for (const p of plugins) {
@@ -87,15 +84,19 @@ async function runBuild(opts: {
 }) {
   console.log("🎨 PalletSmith build\n");
 
-  // Load config
+  const { resolvePalette: rp } = await import("../core/config.js");
+  const { loadConfig } = await import("../core/config.js");
+  const { deriveBase24 } = await import("../core/derive.js");
+  const { expandMasterSchema } = await import("../core/expand.js");
+  const { validatePalette } = await import("../core/validate.js");
+  const { resolvePlugin, runPlugins } = await import("../plugins/registry.js");
+
   let config: { name: string; author: string; version: string; palette: string; apps: Record<string, { output: string; config?: Record<string, unknown> }> };
   if (opts.config) {
-    const { loadConfig } = await import("../core/config.js");
-    config = await loadConfig(opts.config);
+    const loaded = await loadConfig(opts.config);
+    config = { ...loaded, palette: loaded.palette as string };
   } else if (opts.palette) {
-    // Build inline config from palette only
-    const { resolvePalette } = await import("../core/config.js");
-    const palette = await resolvePalette(opts.palette);
+    const palette = await rp(opts.palette);
     config = {
       name: opts.palette.replace(/\.(yml|yaml|json)$/, ""),
       author: "PalletSmith",
@@ -109,11 +110,8 @@ async function runBuild(opts: {
     return;
   }
 
-  // Resolve palette
-  const { resolvePalette: rp } = await import("../core/config.js");
   const palette = await rp(config.palette);
 
-  // Validate
   const validation = validatePalette(palette);
   if (!validation.valid) {
     console.error("❌ Palette validation failed:");
@@ -128,7 +126,6 @@ async function runBuild(opts: {
     }
   }
 
-  // Derive
   const base24 = deriveBase24(palette);
   const { tokens, syntax, terminal, status, players } = expandMasterSchema(base24, palette.accent, palette);
 
@@ -148,7 +145,6 @@ async function runBuild(opts: {
     players,
   };
 
-  // Determine which plugins to run
   const appNames = opts.apps
     ? opts.apps.split(",").map((s) => s.trim())
     : Object.keys(config.apps);
@@ -160,21 +156,23 @@ async function runBuild(opts: {
 
   console.log(`Building for: ${appNames.join(", ")}\n`);
 
-  // Run plugins
-  const { runPlugins: rp2 } = await import("../plugins/registry.js");
-  const pluginConfigs = appNames.map((name) => ({
-    plugin: builtinPlugins[name] as any,
-    config: config.apps[name]?.config ?? {},
-  })).filter((p) => p.plugin != null);
+  const pluginConfigs: Array<{ plugin: AppPlugin; config: Record<string, unknown> }> = [];
+  for (const name of appNames) {
+    try {
+      const plugin = await resolvePlugin(name);
+      pluginConfigs.push({ plugin, config: config.apps[name]?.config ?? {} });
+    } catch {
+      console.warn(`⚠  Plugin not found: "${name}"`);
+    }
+  }
 
   if (pluginConfigs.length === 0) {
-    console.error("No valid plugins found. Available:", Object.keys(builtinPlugins).join(", "));
+    console.error("No valid plugins found.");
     process.exit(1);
   }
 
-  const results = await rp2(pluginConfigs, master);
+  const results = await runPlugins(pluginConfigs, master);
 
-  // Write outputs
   const fs = await import("fs");
   const path = await import("path");
   const outDir = opts.out ?? "./apps";
@@ -207,7 +205,6 @@ async function runInit(opts: { name: string; preset?: string; out?: string }) {
     const { draculaPalette } = await import("../presets/dracula.js");
     palette = draculaPalette;
   } else {
-    // Generate a template palette
     palette = {
       bg: "#1E1E2E",
       surface: "#313244",
@@ -254,10 +251,8 @@ async function runInit(opts: { name: string; preset?: string; out?: string }) {
   console.log("\nNext: palletsmith build");
 }
 
-// Export for programmatic use
 export { runBuild, runInit };
 
-// Run if called directly
 if (import.meta.url === `file://${process.argv[1]}?.split("?")[0]}`) {
   program.parse();
 }

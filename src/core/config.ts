@@ -38,23 +38,23 @@ export async function resolvePalette(paletteRef: string | Palette): Promise<Pale
 }
 
 export function paletteFromRecord(record: Record<string, unknown>): Palette {
-  const palette = record.palette ?? record;
+  const raw = (record.palette ?? record) as Record<string, unknown>;
 
   return {
-    bg: normalizeHex(String(palette.bg ?? palette.background ?? "")),
-    surface: normalizeHex(String(palette.surface ?? "")),
-    selection: normalizeHex(String(palette.selection ?? "")),
-    border: normalizeHex(String(palette.border ?? "")),
-    muted: normalizeHex(String(palette.muted ?? "")),
-    text: normalizeHex(String(palette.text ?? "")),
-    accent: normalizeHex(String(palette.accent ?? "")),
-    red: normalizeHex(String(palette.red ?? "")),
-    orange: normalizeHex(String(palette.orange ?? "")),
-    yellow: normalizeHex(String(palette.yellow ?? "")),
-    green: normalizeHex(String(palette.green ?? "")),
-    cyan: normalizeHex(String(palette.cyan ?? "")),
-    blue: normalizeHex(String(palette.blue ?? "")),
-    magenta: normalizeHex(String(palette.magenta ?? "")),
+    bg: normalizeHex(String(raw.bg ?? raw.background ?? "")),
+    surface: normalizeHex(String(raw.surface ?? "")),
+    selection: normalizeHex(String(raw.selection ?? "")),
+    border: normalizeHex(String(raw.border ?? "")),
+    muted: normalizeHex(String(raw.muted ?? "")),
+    text: normalizeHex(String(raw.text ?? "")),
+    accent: normalizeHex(String(raw.accent ?? "")),
+    red: normalizeHex(String(raw.red ?? "")),
+    orange: normalizeHex(String(raw.orange ?? "")),
+    yellow: normalizeHex(String(raw.yellow ?? "")),
+    green: normalizeHex(String(raw.green ?? "")),
+    cyan: normalizeHex(String(raw.cyan ?? "")),
+    blue: normalizeHex(String(raw.blue ?? "")),
+    magenta: normalizeHex(String(raw.magenta ?? "")),
   };
 }
 
