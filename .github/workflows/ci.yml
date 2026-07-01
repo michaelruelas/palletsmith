@@ -17,29 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check out palletsmith-plugins
-        uses: actions/checkout@v4
-        with:
-          repository: michaelruelas/palletsmith-plugins
-          path: ../palletsmith-plugins
-
-      - name: Build palletsmith-plugins
-        working-directory: ../palletsmith-plugins
-        run: bun install --frozen-lockfile && bun run build
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ matrix.bun-version }}
 
-      - name: Check out palletsmith-plugins
-        uses: actions/checkout@v4
-        with:
-          repository: michaelruelas/palletsmith-plugins
-          path: palletsmith-plugins
-
-      - name: Link palletsmith-plugins to sibling path
-        run: ln -s $PWD/palletsmith-plugins $PWD/../palletsmith-plugins
+      - name: Check out palletsmith-plugins as sibling
+        run: git clone --depth 1 https://github.com/michaelruelas/palletsmith-plugins.git $PWD/../palletsmith-plugins
 
       - name: Build palletsmith-plugins
         working-directory: ../palletsmith-plugins
