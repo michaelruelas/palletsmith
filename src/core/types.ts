@@ -304,6 +304,7 @@ export interface SyntaxTokens {
   variant: SyntaxTokenStyle;
   enum_: SyntaxTokenStyle;
   title: SyntaxTokenStyle;
+  [key: string]: SyntaxTokenStyle;
 }
 
 // ─── Terminal ANSI Palette ────────────────────────────────────
