@@ -1,6 +1,7 @@
 import type { AppPlugin, PluginInput, PluginOutput } from "./types.js";
 import type { PluginManifest, PluginSource, ResolvedPlugin } from "./manifest.js";
 import { validateManifest } from "./manifest.js";
+import { internalRegistry } from "./apps/index.js";
 
 export interface PluginLoaderOptions {
   /** Cache resolved plugins keyed by source string */
@@ -29,11 +30,10 @@ export class PluginLoader {
 
     switch (source.type) {
       case "builtin": {
-        const { registry: builtinRegistry } = await import("palletsmith-plugins");
-        if (!(source.id in builtinRegistry)) {
+        if (!(source.id in internalRegistry)) {
           throw new Error(`Unknown builtin plugin: "${source.id}"`);
         }
-        plugin = builtinRegistry[source.id as keyof typeof builtinRegistry] as AppPlugin;
+        plugin = internalRegistry[source.id as keyof typeof internalRegistry] as AppPlugin;
         break;
       }
       case "npm":

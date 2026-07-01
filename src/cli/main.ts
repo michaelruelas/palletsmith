@@ -43,7 +43,7 @@ program
       const plugins = await listPlugins();
       console.log("\n📦 App Plugins:");
       if (plugins.length === 0) {
-        console.log("  (none found — install palletsmith-plugins or add external sources)");
+        console.log("  (no built-in plugins found)");
       } else {
         console.log(`  ${plugins.length} plugin(s) available:`);
         for (const p of plugins) {

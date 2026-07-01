@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-07-01T03:52:06.090Z",
+  "commit": "12ffa09",
+  "results": [
+    {
+      "theme": "Dracula",
+      "appearance": "dark",
+      "apps": {
+        "zed": {
+          "keys": 232
+        },
+        "ghostty": {
+          "keys": 21
+        },
+        "vscode": {
+          "keys": 178,
+          "score": 51,
+          "total": 70,
+          "matched": 36,
+          "closeCount": 0,
+          "exactCount": 36
+        },
+        "chrome": {
+          "keys": 46
+        },
+        "openchamber": {
+          "keys": 125
+        }
+      }
+    },
+    {
+      "theme": "One Dark Pro",
+      "appearance": "dark",
+      "apps": {
+        "zed": {
+          "keys": 232
+        },
+        "ghostty": {
+          "keys": 21
+        },
+        "vscode": {
+          "keys": 178,
+          "score": 33,
+          "total": 73,
+          "matched": 24,
+          "closeCount": 6,
+          "exactCount": 18
+        },
+        "chrome": {
+          "keys": 46
+        },
+        "openchamber": {
+          "keys": 125
+        }
+      }
+    },
+    {
+      "theme": "Evergreen Dark",
+      "appearance": "dark",
+      "apps": {
+        "zed": {
+          "keys": 232
+        },
+        "ghostty": {
+          "keys": 21
+        },
+        "vscode": {
+          "keys": 178
+        },
+        "chrome": {
+          "keys": 46
+        },
+        "openchamber": {
+          "keys": 125
+        }
+      }
+    },
+    {
+      "theme": "Evergreen Light",
+      "appearance": "light",
+      "apps": {
+        "zed": {
+          "keys": 232
+        },
+        "ghostty": {
+          "keys": 21
+        },
+        "vscode": {
+          "keys": 178
+        },
+        "chrome": {
+          "keys": 46
+        },
+        "openchamber": {
+          "keys": 125
+        }
+      }
+    }
+  ]
+}

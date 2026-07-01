@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { resolvePlugin, listPlugins, runPlugin } from "../../src/plugins/registry.ts";
-import { registry as builtinPlugins } from "palletsmith-plugins";
+import { internalRegistry as builtinPlugins } from "../../src/plugins/apps/index.ts";
 import type { MasterSchema } from "../../src/core/types.ts";
 import type { Palette, Base24Slots } from "../../src/core/types.ts";
 

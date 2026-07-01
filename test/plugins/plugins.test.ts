@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { zedPlugin, ghosttyPlugin, vscodePlugin, chromePlugin, openchamberPlugin } from "palletsmith-plugins";
+import { zedPlugin, ghosttyPlugin, vscodePlugin, chromePlugin, openchamberPlugin } from "../../src/plugins/apps/index.ts";
 import type { MasterSchema, Palette } from "../../src/core/types.ts";
 
 const mockPalette: Palette = {

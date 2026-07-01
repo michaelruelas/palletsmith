@@ -91,10 +91,10 @@ function deriveSemanticTokens(
     editorBackground: b.base00,
     editorForeground: b.base05,
     editorLineNumber: blend(b.base05, b.base00, 0.3),
-    editorActiveLineNumber: blend(b.base05, b.base00, 0.6),
+    editorActiveLineNumber: b.base05,
     editorGutterBackground: b.base00,
-    editorIndentGuide: blend(b.base02, b.base00, 0.4),
-    editorActiveIndentGuide: blend(b.base02, b.base00, 0.7),
+    editorIndentGuide: blend(b.base03, b.base00, isDark ? 0.3 : 0.5),
+    editorActiveIndentGuide: blend(b.base03, b.base00, isDark ? 0.5 : 0.7),
 
     // Navigation
     tabActiveBackground: isDark ? lighten(b.base00, 4) : darken(b.base00, 3),
@@ -103,7 +103,7 @@ function deriveSemanticTokens(
     titleBarBackground: b.base00,
     statusBarBackground: b.base01,
     activityBarBackground: b.base01,
-    activityBarForeground: accent,
+    activityBarForeground: b.base05,
     sidebarBackground: b.base01,
 
     // Scrollbar

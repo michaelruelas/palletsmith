@@ -1,4 +1,6 @@
-import type { MasterSchema, ColorHex } from "../core/types.js";
+import type { MasterSchema, ColorHex, TerminalPalette } from "../core/types.js";
+
+export type { MasterSchema, TerminalPalette, ColorHex };
 
 export interface PluginOutput {
   filename: string;

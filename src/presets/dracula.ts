@@ -3,7 +3,7 @@ import type { PresetPack } from "./index.js";
 
 export const draculaPalette: Palette = {
   bg: "#282A36",
-  surface: "#44475A",
+  surface: "#21222C",
   selection: "#44475A",
   border: "#44475A",
   muted: "#6272A4",
@@ -14,8 +14,8 @@ export const draculaPalette: Palette = {
   yellow: "#F1FA8C",
   green: "#50FA7B",
   cyan: "#8BE9FD",
-  blue: "#6272A4",
-  magenta: "#BD93F9",
+  blue: "#8BE9FD",
+  magenta: "#FF79C6",
 };
 
 export const draculaPreset: PresetPack = {

@@ -1,23 +1,19 @@
-import type { AppPlugin, AppRegistry, PluginOutput } from "./types.js";
+import type { AppPlugin, PluginOutput } from "./types.js";
 import type { MasterSchema } from "../core/types.js";
 import type { PluginSource } from "./manifest.js";
 import { parsePluginSource } from "./manifest.js";
 import { PluginLoader } from "./loader.js";
+import { internalRegistry } from "./apps/index.js";
 
 const loader = new PluginLoader();
 
 /**
  * Resolve a plugin by ID or source descriptor.
- * First tries the bundled palletsmith-plugins package, then falls through to generic loading.
+ * First tries the built-in registry, then falls through to generic loading.
  */
 export async function resolvePlugin(id: string): Promise<AppPlugin> {
-  try {
-    const { registry } = await import("palletsmith-plugins");
-    if (id in registry) {
-      return registry[id as keyof typeof registry] as AppPlugin;
-    }
-  } catch {
-    // palletsmith-plugins not installed; fall through to generic loader
+  if (id in internalRegistry) {
+    return internalRegistry[id as keyof typeof internalRegistry] as AppPlugin;
   }
 
   return resolveExternalPlugin(id);
@@ -29,7 +25,7 @@ async function resolveExternalPlugin(input: string): Promise<AppPlugin> {
 }
 
 /**
- * List all available plugins (from palletsmith-plugins if installed).
+ * List all available built-in plugins.
  */
 export async function listPlugins(): Promise<Array<{
   id: string;
@@ -38,18 +34,13 @@ export async function listPlugins(): Promise<Array<{
   description: string;
   consumes: string[];
 }>> {
-  try {
-    const { registry } = await import("palletsmith-plugins");
-    return Object.entries(registry).map(([id, plugin]) => ({
-      id,
-      name: plugin.name,
-      version: plugin.version,
-      description: plugin.description,
-      consumes: plugin.consumes,
-    }));
-  } catch {
-    return [];
-  }
+  return Object.entries(internalRegistry).map(([id, plugin]) => ({
+    id,
+    name: plugin.name,
+    version: plugin.version,
+    description: plugin.description,
+    consumes: plugin.consumes,
+  }));
 }
 
 export async function runPlugin(
