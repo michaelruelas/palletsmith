@@ -1,4 +1,4 @@
-import type { Palette } from "./types.js";
+import type { Palette, ThemeCustomizations } from "./types.js";
 import { normalizeHex } from "./color.js";
 
 export interface ThemeSmithConfig {
@@ -8,6 +8,7 @@ export interface ThemeSmithConfig {
   palette: string | Palette;
   apps: Record<string, AppConfig>;
   overrides?: { tokens?: Record<string, string> };
+  customizations?: ThemeCustomizations;
 }
 
 export interface AppConfig {
@@ -81,5 +82,6 @@ export async function loadConfig(configPath?: string): Promise<ThemeSmithConfig>
     palette: parsed.palette as string | Palette,
     apps: parsed.apps as Record<string, AppConfig>,
     overrides: parsed.overrides as { tokens?: Record<string, string> } | undefined,
+    customizations: parsed.customizations as ThemeCustomizations | undefined,
   };
 }

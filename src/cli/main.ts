@@ -91,7 +91,7 @@ async function runBuild(opts: {
   const { validatePalette } = await import("../core/validate.js");
   const { resolvePlugin, runPlugins } = await import("../plugins/registry.js");
 
-  let config: { name: string; author: string; version: string; palette: string; apps: Record<string, { output: string; config?: Record<string, unknown> }> };
+  let config: { name: string; author: string; version: string; palette: string; apps: Record<string, { output: string; config?: Record<string, unknown> }>; customizations?: import("../core/types.js").ThemeCustomizations };
   if (opts.config) {
     const loaded = await loadConfig(opts.config);
     config = { ...loaded, palette: loaded.palette as string };
@@ -111,6 +111,8 @@ async function runBuild(opts: {
   }
 
   const palette = await rp(config.palette);
+
+  const { resolvePresetCustomizations } = await import("../presets/index.js");
 
   const validation = validatePalette(palette);
   if (!validation.valid) {
@@ -136,6 +138,7 @@ async function runBuild(opts: {
       version: config.version,
       appearance: base24.appearance,
       basePalette: palette,
+      customizations: config.customizations ?? resolvePresetCustomizations(config.name),
     },
     base24,
     tokens,

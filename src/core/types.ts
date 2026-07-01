@@ -359,6 +359,17 @@ export interface PlayerColor {
 
 export type PlayerColors = PlayerColor[]; // exactly 8 entries
 
+// ─── Theme Customizations ─────────────────────────────────────
+
+/**
+ * Per-theme overrides to the derived schema, keyed by plugin ID.
+ * Each plugin defines its own override shape. Plugins fall back to
+ * derived values when no customization is provided.
+ */
+export interface ThemeCustomizations {
+  plugins?: Record<string, Record<string, unknown>>;
+}
+
 // ─── Master Schema (the full contract) ────────────────────────
 
 /**
@@ -373,6 +384,8 @@ export interface MasterSchema {
     version: string;
     /** The original palette the user supplied */
     basePalette: Palette;
+    /** Per-theme overrides for specific app plugins */
+    customizations?: ThemeCustomizations;
   };
   /** Base24 slots (24 colors, including bright variants) */
   base24: Base24Slots;

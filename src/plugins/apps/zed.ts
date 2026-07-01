@@ -2,6 +2,22 @@ import { definePlugin } from "../types.js";
 import type { PluginOutput, PluginInput, MasterSchema } from "../types.js";
 import type { Appearance } from "../../core/types.js";
 
+interface ZedStyleOverrides {
+  [key: string]: string | null;
+}
+
+interface ZedSyntaxOverride {
+  color?: string;
+  background_color?: string | null;
+  font_style?: string | null;
+  font_weight?: number | null;
+}
+
+interface ZedCustomizations {
+  style?: ZedStyleOverrides;
+  syntax?: Record<string, ZedSyntaxOverride>;
+}
+
 export const zedPlugin = definePlugin({
   id: "zed",
   name: "Zed Editor",
@@ -11,7 +27,6 @@ export const zedPlugin = definePlugin({
 
   render(input: PluginInput): PluginOutput[] {
     const { master } = input;
-    const t = master.tokens;
 
     const appearance: Appearance = master.meta.appearance;
 
@@ -23,7 +38,7 @@ export const zedPlugin = definePlugin({
         {
           name: `${master.meta.name} ${appearance === "dark" ? "Dark" : "Light"}`,
           appearance,
-          style: buildZedStyle(master, master.meta.name),
+          style: buildZedStyle(master),
         },
       ],
     };
@@ -38,19 +53,16 @@ export const zedPlugin = definePlugin({
   },
 });
 
-function buildZedStyle(m: MasterSchema, themeName: string) {
+function buildZedStyle(m: MasterSchema) {
   const t = m.tokens;
   const term = m.terminal;
   const s = m.syntax;
   const players = m.players;
   const base24 = m.base24;
+  const palette = m.meta.basePalette;
 
-  const isGitHub = themeName === "GitHub";
-  const isDracula = themeName === "Dracula";
-  const isOneDark = themeName === "One Dark Pro";
-
-  const paletteBorder = isGitHub ? m.meta.basePalette.border : t.border;
-  const paletteMuted = isGitHub ? m.meta.basePalette.muted : t.textMuted;
+  const zedCustom = (m.meta.customizations?.plugins?.zed ?? {}) as ZedCustomizations;
+  const overrides = zedCustom.style ?? {};
 
   const blend = (fg: string, bg: string, alpha: number) => {
     const fr = parseInt(fg.slice(1, 3), 16);
@@ -70,178 +82,180 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
     return hex.length === 7 ? `${hex}${alpha}` : hex.slice(0, 7) + alpha;
   };
 
+  function ov(key: string, fallback: string | null): string | null {
+    const v = (overrides as Record<string, string | null | undefined>)[key];
+    return v !== undefined ? v : fallback;
+  }
+
   return {
-    "background.appearance": isDracula ? "blurred" : "opaque",
+    "background.appearance": ov("background.appearance", "opaque")!,
     accents: [
-      m.meta.basePalette.accent,
+      palette.accent,
       t.textMuted,
       t.textPlaceholder,
-      m.meta.basePalette.accent,
+      palette.accent,
       t.textMuted,
       t.textPlaceholder,
-      m.meta.basePalette.accent,
+      palette.accent,
       t.textMuted,
       t.textPlaceholder,
     ],
-    border: isOneDark ? "#3e4452" : (isDracula ? "#3c324bcc" : paletteBorder),
-    "border.variant": isOneDark ? "#3e4452" : (isDracula ? "#c9a8f933" : withAlpha(paletteBorder, 0.7)),
-    "border.focused": isOneDark ? "#3e4452" : (isGitHub ? "#2f81f7" : (isDracula ? "#c9a8f977" : t.borderFocused)),
-    "border.selected": isOneDark ? "#3e4452" : (isGitHub ? "#2f81f7" : (isDracula ? "#c9a8f9bb" : t.borderSelected)),
-    "border.transparent": isDracula ? "#00000000" : (isOneDark ? "#3e4452" : (isGitHub ? withAlpha(t.background, 0) : t.border)),
-    "border.disabled": isOneDark ? "#3e4452" : (isGitHub ? withAlpha("#6e7681", 0.1) : t.border),
-    "elevated_surface.background": isOneDark ? "#1e2227" : (isDracula ? "#1e1925ff" : t.elevatedSurface),
-    "surface.background": isDracula ? "#242631ee" : blend(t.surface, t.background, 0.75),
-    background: isOneDark ? "#23272e" : (isDracula ? withAlpha("#b597e0", 0.2) : t.background),
-    "element.background": isOneDark ? "#404754" : (isGitHub ? "#6e76811f" : (isDracula ? "#1c1d26ff" : t.surface)),
-    "element.hover": isOneDark ? "#2c313a" : (isGitHub ? "#6e76811f" : (isDracula ? "#3c324bff" : t.hoverBackground)),
-    "element.active": isDracula ? "#796595" : (isGitHub ? "#6e76811f" : t.activeBackground),
-    "element.selected": isDracula ? "#282232" : (isOneDark ? "#2c313a" : (isGitHub ? "#6e76811f" : t.selectionBackground)),
-    "element.disabled": isGitHub ? "#21262d" : (isDracula ? "#e9dbfd" : t.border),
-    "drop_target.background": isGitHub ? "#2f81f716" : (isDracula ? "#504364" : withAlpha(t.textAccent, 0.2)),
-    "ghost_element.background": isDracula ? "#00000000" : t.background,
-    "ghost_element.hover": isOneDark ? "#2c313a" : (isGitHub ? "#6e76811f" : (isDracula ? "#c9a8f935" : t.hoverBackground)),
-    "ghost_element.active": isGitHub ? "#6e76811f" : (isDracula ? "#c9a8f950" : t.activeBackground),
-    "ghost_element.selected": isOneDark ? "#2c313a" : (isGitHub ? "#6e76811f" : (isDracula ? "#c9a8f925" : t.selectionBackground)),
-    "ghost_element.disabled": isGitHub ? "#21262d" : (isDracula ? "#ff5555ff" : t.border),
-    text: t.textPrimary,
-    "text.muted": isDracula ? "#a186c7" : (isGitHub ? t.textPrimary : t.textMuted),
-    "text.placeholder": isDracula ? "#C9A8F9" : (isGitHub ? "#6e7681" : t.textPlaceholder),
-    "text.disabled": isDracula ? "#C9A8F950" : t.textDisabled,
-    "text.accent": isGitHub ? "#2f81f7" : (isDracula ? "#c9a8f9ff" : t.textAccent),
-    icon: isDracula ? t.textPrimary : (isGitHub ? t.textPrimary : t.iconAccent),
-    "icon.muted": isDracula ? withAlpha(t.textPrimary, 0.44) : (isGitHub ? "#6e7681" : t.iconMuted),
-    "icon.disabled": isDracula ? withAlpha(t.textPrimary, 0.25) : t.textDisabled,
-    "icon.placeholder": isDracula ? withAlpha(t.textPrimary, 0.31) : t.textDisabled,
-    "icon.accent": isGitHub ? "#2f81f7" : (isDracula ? "#c9a8f9ff" : t.iconAccent),
-    "debugger.accent": t.textAccent,
-    "status_bar.background": isDracula ? "#141119bb" : (isGitHub ? "#0d1117" : t.statusBarBackground),
-    "title_bar.background": isOneDark ? "#23272e" : (isDracula ? "#141119bb" : t.titleBarBackground),
-    "title_bar.inactive_background": isDracula ? "#0a080cbb" : t.titleBarBackground,
-    "toolbar.background": isDracula ? "#282a36ff" : t.surface,
-    "tab_bar.background": isOneDark ? "#1e2227" : (isGitHub ? "#010409" : (isDracula ? "#282232bb" : t.tabBarBackground)),
-    "tab.inactive_background": isOneDark ? "#1e2227" : (isGitHub ? "#010409" : (isDracula ? "#1c1d26ff" : t.tabInactiveBackground)),
-    "tab.active_background": isOneDark ? "#23272e" : (isDracula ? "#282a36ff" : t.tabActiveBackground),
-    "search.match_background": isOneDark ? "#d19a6644" : (isGitHub ? "#f2cc604d" : (isDracula ? "#50fa7b50" : withAlpha(t.textAccent, 0.2))),
-    "panel.background": isOneDark ? "#23272e" : (isDracula ? "#16121b" : (isGitHub ? "#010409" : t.panelBackground)),
-    "panel.focused_border": isGitHub ? paletteBorder : (isDracula ? "#c9a8f960" : t.panelBorder),
-    "panel.indent_guide": isDracula ? withAlpha(t.textPrimary, 0.12) : t.editorIndentGuide,
-    "panel.indent_guide_hover": isDracula ? "#c9a8f935" : withAlpha(t.editorIndentGuide, 0.5),
-    "panel.indent_guide_active": isDracula ? "#C9A8F950" : t.editorActiveIndentGuide,
-    "pane.focused_border": isDracula ? "#C9A8F9FF" : (isGitHub ? paletteBorder : t.borderMuted),
-    "pane_group.border": isDracula ? "#3c324bcc" : t.border,
-    "scrollbar.thumb.background": isOneDark ? "#4e566680" : (isGitHub ? "#6e76811a" : (isDracula ? "#c9a8f977" : t.scrollbarThumb)),
-    "scrollbar.thumb.hover_background": isOneDark ? "#5a6375" : (isGitHub ? "#6e76813d" : (isDracula ? "#c9a8f9ff" : t.scrollbarThumbHover)),
-    "scrollbar.thumb.active_background": isOneDark ? "#5a637580" : (isGitHub ? "#3d455580" : withAlpha(t.scrollbarThumb, 0.5)),
-    "scrollbar.thumb.border": isOneDark ? "#4e5666" : (isGitHub ? "#0d111700" : (isDracula ? "#00000000" : t.scrollbarThumb)),
-    "scrollbar.track.background": isOneDark ? "#23272e" : (isGitHub ? "#0d111700" : (isDracula ? "#141119" : t.scrollbarTrack)),
-    "scrollbar.track.border": isGitHub ? "#0d111700" : (isDracula ? "#c9a8f944" : withAlpha(t.border, 0.7)),
-    "minimap.thumb.background": t.scrollbarThumb,
-    "minimap.thumb.hover_background": t.scrollbarThumbHover,
-    "minimap.thumb.active_background": withAlpha(t.scrollbarThumb, 0.5),
-    "minimap.thumb.border": t.scrollbarThumb,
-    "editor.foreground": t.editorForeground,
-    "editor.background": t.editorBackground,
-    "editor.gutter.background": t.editorGutterBackground,
-    "editor.subheader.background": isDracula ? "#1e1925" : (isGitHub ? "#161b22" : t.border),
-    "editor.active_line.background": isOneDark ? "#2c313c" : (isGitHub ? "#6e76811a" : (isDracula ? "#c9a8f933" : t.background)),
-    "editor.highlighted_line.background": isDracula ? "#44475a" : (isGitHub ? "#6e76811a" : t.background),
-    "editor.debugger_active_line.background": t.background,
-    "editor.line_number": isGitHub ? "#6e7681" : (isDracula ? withAlpha(t.textPrimary, 0.31) : t.editorLineNumber),
-    "editor.active_line_number": isDracula ? "#C9A8F9" : t.editorActiveLineNumber,
-    "editor.hover_line_number": t.editorActiveLineNumber,
-    "editor.invisible": isGitHub ? "#6e7681" : (isDracula ? withAlpha(t.textPrimary, 0.19) : withAlpha(t.editorIndentGuide, 0.4)),
-    "editor.wrap_guide": isOneDark ? "#3e4452" : (isDracula ? withAlpha(t.textPrimary, 0.16) : t.editorIndentGuide),
-    "editor.active_wrap_guide": isGitHub ? "#30363db3" : (isDracula ? withAlpha(t.textAccent, 0.4) : t.border),
-    "editor.indent_guide": isDracula ? withAlpha(t.textPrimary, 0.12) : t.editorIndentGuide,
-    "editor.indent_guide_active": isOneDark ? "#c8c8c859" : (isDracula ? withAlpha(t.textAccent, 0.31) : t.editorActiveIndentGuide),
-    "editor.document_highlight.read_background": isOneDark ? "#555a6345" : (isGitHub ? "#2f81f74d" : (isDracula ? "#c9a8f940" : withAlpha(t.textAccent, 0.2))),
-    "editor.document_highlight.write_background": isOneDark ? "#555a6345" : (isGitHub ? "#2f81f733" : (isDracula ? "#44475a" : withAlpha(t.textAccent, 0.2))),
-    "editor.document_highlight.bracket_background": isDracula ? "#bd93f935" : withAlpha(t.textPrimary, 0.1),
-    "terminal.background": isDracula ? "#14151b" : t.editorBackground,
-    "terminal.foreground": t.editorForeground,
-    "terminal.ansi.background": isDracula ? "#14151b" : term.background,
-    "terminal.bright_foreground": isDracula ? "#f9f9f5" : (isGitHub ? "#ffffff" : term.foreground),
-    "terminal.dim_foreground": isGitHub ? "#484f58" : (isDracula ? "#c6c6c2" : withAlpha(term.foreground, 0.5)),
-    "terminal.ansi.black": isOneDark ? "#3f4451" : (isGitHub ? "#484f58" : (isDracula ? "#21222c" : term.black)),
-    "terminal.ansi.bright_black": isOneDark ? "#4f5666" : (isDracula ? "#919cbf" : (isGitHub ? "#6e7681" : term.brightBlack)),
-    "terminal.ansi.red": isOneDark ? "#e05561" : (isGitHub ? "#ff7b72" : term.red),
-    "terminal.ansi.bright_red": isDracula ? "#ff6e6e" : (isOneDark ? "#ff616e" : (isGitHub ? "#ffa198" : term.brightRed)),
-    "terminal.ansi.green": isOneDark ? "#8cc265" : (isGitHub ? "#3fb950" : term.green),
-    "terminal.ansi.bright_green": isDracula ? "#69ff94" : (isOneDark ? "#a5e075" : (isGitHub ? "#56d364" : term.brightGreen)),
-    "terminal.ansi.yellow": isOneDark ? "#d18f52" : (isGitHub ? "#d29922" : term.yellow),
-    "terminal.ansi.bright_yellow": isDracula ? "#ffffa5" : (isOneDark ? "#f0a45d" : (isGitHub ? "#e3b341" : term.brightYellow)),
-    "terminal.ansi.blue": isOneDark ? "#4aa5f0" : (isDracula ? "#9580ff" : (isGitHub ? "#58a6ff" : term.blue)),
-    "terminal.ansi.bright_blue": isOneDark ? "#4dc4ff" : (isDracula ? "#D6ACFF" : (isGitHub ? "#79c0ff" : term.brightBlue)),
-    "terminal.ansi.magenta": isOneDark ? "#c162de" : (isGitHub ? "#bc8cff" : term.magenta),
-    "terminal.ansi.bright_magenta": isDracula ? "#ff92df" : (isOneDark ? "#de73ff" : (isGitHub ? "#d2a8ff" : term.brightMagenta)),
-    "terminal.ansi.cyan": isOneDark ? "#42b3c2" : (isGitHub ? "#39c5cf" : term.cyan),
-    "terminal.ansi.bright_cyan": isDracula ? "#a4ffff" : (isOneDark ? "#4cd1e0" : (isGitHub ? "#56d4dd" : term.brightCyan)),
-    "terminal.ansi.white": isOneDark ? "#d7dae0" : (isGitHub ? "#b1bac4" : term.white),
-    "terminal.ansi.bright_white": isOneDark ? "#e6e6e6" : (isGitHub ? "#ffffff" : term.brightWhite),
-    "link_text.hover": isDracula ? "#8be9fd" : (isGitHub ? "#2f81f7" : t.linkHoverForeground),
-    "version_control.added": m.status.success,
-    "version_control.deleted": m.status.error,
-    "version_control.modified": m.status.warning,
-    "version_control.renamed": m.status.success,
-    "version_control.conflict": m.status.warning,
-    "version_control.ignored": t.textMuted,
-    "conflict": isDracula ? "#dec184" : (isGitHub ? "#f85149" : withAlpha(m.status.warning, 0.7)),
-    "conflict.background": null,
-    "conflict.border": null,
-    "created": isOneDark ? "#a5e075" : (isGitHub ? "#2ea043" : (isDracula ? "#73fb95ff" : m.status.success)),
-    "created.background": null,
-    "created.border": null,
-    "deleted": isOneDark ? "#ff616e" : (isGitHub ? "#f85149" : m.status.error),
-    "deleted.background": null,
-    "deleted.border": null,
-    "error": isOneDark ? "#c24038" : (isGitHub ? "#f85149" : (isDracula ? "#e67373ff" : m.status.error)),
-    "error.background": isOneDark ? "#1e2227" : (isGitHub ? t.background : (isDracula ? "#242631ee" : withAlpha(m.status.error, 0.1))),
-    "error.border": isOneDark ? "#a03237" : (isGitHub ? withAlpha(paletteBorder, 0.7) : (isDracula ? "#e67373ff" : m.status.error)),
-    "hidden": isDracula ? "#414754" : (isGitHub ? "#6e7681" : t.textMuted),
-    "hidden.background": null,
-    "hidden.border": null,
-    "hint": isOneDark ? "#7a849c" : (isGitHub ? "#6e7681" : t.textMuted),
-    "hint.background": null,
-    "hint.border": isGitHub ? withAlpha(paletteBorder, 0.7) : null,
-    "ignored": isOneDark ? "#636b78" : (isDracula ? withAlpha(t.textPrimary, 0.31) : (isGitHub ? "#6e76814d" : withAlpha(t.textMuted, 0.3))),
-    "ignored.background": null,
-    "ignored.border": null,
-    "info": isDracula ? "#73ece5" : (isOneDark ? "#61afef" : (isGitHub ? base24.base0A : m.status.info)),
-    "info.background": isOneDark ? "#1e2227" : null,
-    "info.border": isGitHub ? withAlpha(paletteBorder, 0.7) : null,
-    "modified": isDracula ? "#a2edfd" : (isOneDark ? "#e5c07b" : (isGitHub ? base24.base0A : m.status.info)),
-    "modified.background": null,
-    "modified.border": null,
-    "predictive": isDracula ? "#c6c6c2" : (isOneDark ? "#4D5970" : (isGitHub ? "#6e7681" : t.textMuted)),
-    "predictive.background": null,
-    "predictive.border": isGitHub ? withAlpha(paletteBorder, 0.7) : null,
-    "renamed": isDracula ? "#8be9fd" : (isGitHub ? "#2ea043" : m.status.success),
-    "renamed.background": null,
-    "renamed.border": null,
-    "success": isGitHub ? "#2ea043" : (isDracula ? "#79e96dff" : m.status.success),
-    "success.background": null,
-    "success.border": null,
-    "unreachable": isDracula ? "#959591" : (isGitHub ? "#484f58" : m.status.error),
-    "unreachable.background": null,
-    "unreachable.border": null,
-    "warning": isOneDark ? "#d19a66" : (isDracula ? "#e6e373ff" : m.status.warning),
-    "warning.background": isOneDark ? "#1e2227" : (isGitHub ? t.background : (isDracula ? "#242631ee" : withAlpha(m.status.warning, 0.1))),
-    "warning.border": isOneDark ? "#89734d" : (isGitHub ? withAlpha(paletteBorder, 0.7) : (isDracula ? "#e6e373ff" : m.status.warning)),
+    border: ov("border", t.border)!,
+    "border.variant": ov("border.variant", withAlpha(t.border, 0.7))!,
+    "border.focused": ov("border.focused", t.borderFocused)!,
+    "border.selected": ov("border.selected", t.borderSelected)!,
+    "border.transparent": ov("border.transparent", t.border)!,
+    "border.disabled": ov("border.disabled", t.border)!,
+    "elevated_surface.background": ov("elevated_surface.background", t.elevatedSurface)!,
+    "surface.background": ov("surface.background", blend(t.surface, t.background, 0.75))!,
+    background: ov("background", t.background)!,
+    "element.background": ov("element.background", t.surface)!,
+    "element.hover": ov("element.hover", t.hoverBackground)!,
+    "element.active": ov("element.active", t.activeBackground)!,
+    "element.selected": ov("element.selected", t.selectionBackground)!,
+    "element.disabled": ov("element.disabled", t.border)!,
+    "drop_target.background": ov("drop_target.background", withAlpha(t.textAccent, 0.2))!,
+    "ghost_element.background": ov("ghost_element.background", t.background)!,
+    "ghost_element.hover": ov("ghost_element.hover", t.hoverBackground)!,
+    "ghost_element.active": ov("ghost_element.active", t.activeBackground)!,
+    "ghost_element.selected": ov("ghost_element.selected", t.selectionBackground)!,
+    "ghost_element.disabled": ov("ghost_element.disabled", t.border)!,
+    text: ov("text", t.textPrimary)!,
+    "text.muted": ov("text.muted", t.textMuted)!,
+    "text.placeholder": ov("text.placeholder", t.textPlaceholder)!,
+    "text.disabled": ov("text.disabled", t.textDisabled)!,
+    "text.accent": ov("text.accent", t.textAccent)!,
+    icon: ov("icon", t.iconAccent)!,
+    "icon.muted": ov("icon.muted", t.iconMuted)!,
+    "icon.disabled": ov("icon.disabled", t.textDisabled)!,
+    "icon.placeholder": ov("icon.placeholder", t.textDisabled)!,
+    "icon.accent": ov("icon.accent", t.iconAccent)!,
+    "debugger.accent": ov("debugger.accent", t.textAccent)!,
+    "status_bar.background": ov("status_bar.background", t.statusBarBackground)!,
+    "title_bar.background": ov("title_bar.background", t.titleBarBackground)!,
+    "title_bar.inactive_background": ov("title_bar.inactive_background", t.titleBarBackground)!,
+    "toolbar.background": ov("toolbar.background", t.surface)!,
+    "tab_bar.background": ov("tab_bar.background", t.tabBarBackground)!,
+    "tab.inactive_background": ov("tab.inactive_background", t.tabInactiveBackground)!,
+    "tab.active_background": ov("tab.active_background", t.tabActiveBackground)!,
+    "search.match_background": ov("search.match_background", withAlpha(t.textAccent, 0.2))!,
+    "panel.background": ov("panel.background", t.panelBackground)!,
+    "panel.focused_border": ov("panel.focused_border", t.panelBorder)!,
+    "panel.indent_guide": ov("panel.indent_guide", t.editorIndentGuide)!,
+    "panel.indent_guide_hover": ov("panel.indent_guide_hover", withAlpha(t.editorIndentGuide, 0.5))!,
+    "panel.indent_guide_active": ov("panel.indent_guide_active", t.editorActiveIndentGuide)!,
+    "pane.focused_border": ov("pane.focused_border", t.borderMuted)!,
+    "pane_group.border": ov("pane_group.border", t.border)!,
+    "scrollbar.thumb.background": ov("scrollbar.thumb.background", t.scrollbarThumb)!,
+    "scrollbar.thumb.hover_background": ov("scrollbar.thumb.hover_background", t.scrollbarThumbHover)!,
+    "scrollbar.thumb.active_background": ov("scrollbar.thumb.active_background", withAlpha(t.scrollbarThumb, 0.5))!,
+    "scrollbar.thumb.border": ov("scrollbar.thumb.border", t.scrollbarThumb)!,
+    "scrollbar.track.background": ov("scrollbar.track.background", t.scrollbarTrack)!,
+    "scrollbar.track.border": ov("scrollbar.track.border", withAlpha(t.border, 0.7))!,
+    "minimap.thumb.background": ov("minimap.thumb.background", t.scrollbarThumb)!,
+    "minimap.thumb.hover_background": ov("minimap.thumb.hover_background", t.scrollbarThumbHover)!,
+    "minimap.thumb.active_background": ov("minimap.thumb.active_background", withAlpha(t.scrollbarThumb, 0.5))!,
+    "minimap.thumb.border": ov("minimap.thumb.border", t.scrollbarThumb)!,
+    "editor.foreground": ov("editor.foreground", t.editorForeground)!,
+    "editor.background": ov("editor.background", t.editorBackground)!,
+    "editor.gutter.background": ov("editor.gutter.background", t.editorGutterBackground)!,
+    "editor.subheader.background": ov("editor.subheader.background", t.border)!,
+    "editor.active_line.background": ov("editor.active_line.background", t.background)!,
+    "editor.highlighted_line.background": ov("editor.highlighted_line.background", t.background)!,
+    "editor.debugger_active_line.background": ov("editor.debugger_active_line.background", t.background)!,
+    "editor.line_number": ov("editor.line_number", t.editorLineNumber)!,
+    "editor.active_line_number": ov("editor.active_line_number", t.editorActiveLineNumber)!,
+    "editor.hover_line_number": ov("editor.hover_line_number", t.editorActiveLineNumber)!,
+    "editor.invisible": ov("editor.invisible", withAlpha(t.editorIndentGuide, 0.4))!,
+    "editor.wrap_guide": ov("editor.wrap_guide", t.editorIndentGuide)!,
+    "editor.active_wrap_guide": ov("editor.active_wrap_guide", t.border)!,
+    "editor.indent_guide": ov("editor.indent_guide", t.editorIndentGuide)!,
+    "editor.indent_guide_active": ov("editor.indent_guide_active", t.editorActiveIndentGuide)!,
+    "editor.document_highlight.read_background": ov("editor.document_highlight.read_background", withAlpha(t.textAccent, 0.2))!,
+    "editor.document_highlight.write_background": ov("editor.document_highlight.write_background", withAlpha(t.textAccent, 0.2))!,
+    "editor.document_highlight.bracket_background": ov("editor.document_highlight.bracket_background", withAlpha(t.textPrimary, 0.1))!,
+    "terminal.background": ov("terminal.background", t.editorBackground)!,
+    "terminal.foreground": ov("terminal.foreground", t.editorForeground)!,
+    "terminal.ansi.background": ov("terminal.ansi.background", term.background)!,
+    "terminal.bright_foreground": ov("terminal.bright_foreground", term.foreground)!,
+    "terminal.dim_foreground": ov("terminal.dim_foreground", withAlpha(term.foreground, 0.5))!,
+    "terminal.ansi.black": ov("terminal.ansi.black", term.black)!,
+    "terminal.ansi.bright_black": ov("terminal.ansi.bright_black", term.brightBlack)!,
+    "terminal.ansi.red": ov("terminal.ansi.red", term.red)!,
+    "terminal.ansi.bright_red": ov("terminal.ansi.bright_red", term.brightRed)!,
+    "terminal.ansi.green": ov("terminal.ansi.green", term.green)!,
+    "terminal.ansi.bright_green": ov("terminal.ansi.bright_green", term.brightGreen)!,
+    "terminal.ansi.yellow": ov("terminal.ansi.yellow", term.yellow)!,
+    "terminal.ansi.bright_yellow": ov("terminal.ansi.bright_yellow", term.brightYellow)!,
+    "terminal.ansi.blue": ov("terminal.ansi.blue", term.blue)!,
+    "terminal.ansi.bright_blue": ov("terminal.ansi.bright_blue", term.brightBlue)!,
+    "terminal.ansi.magenta": ov("terminal.ansi.magenta", term.magenta)!,
+    "terminal.ansi.bright_magenta": ov("terminal.ansi.bright_magenta", term.brightMagenta)!,
+    "terminal.ansi.cyan": ov("terminal.ansi.cyan", term.cyan)!,
+    "terminal.ansi.bright_cyan": ov("terminal.ansi.bright_cyan", term.brightCyan)!,
+    "terminal.ansi.white": ov("terminal.ansi.white", term.white)!,
+    "terminal.ansi.bright_white": ov("terminal.ansi.bright_white", term.brightWhite)!,
+    "link_text.hover": ov("link_text.hover", t.linkHoverForeground)!,
+    "version_control.added": ov("version_control.added", m.status.success)!,
+    "version_control.deleted": ov("version_control.deleted", m.status.error)!,
+    "version_control.modified": ov("version_control.modified", m.status.warning)!,
+    "version_control.renamed": ov("version_control.renamed", m.status.success)!,
+    "version_control.conflict": ov("version_control.conflict", m.status.warning)!,
+    "version_control.ignored": ov("version_control.ignored", t.textMuted)!,
+    conflict: ov("conflict", withAlpha(m.status.warning, 0.7))!,
+    "conflict.background": ov("conflict.background", null),
+    "conflict.border": ov("conflict.border", null),
+    created: ov("created", m.status.success)!,
+    "created.background": ov("created.background", null),
+    "created.border": ov("created.border", null),
+    deleted: ov("deleted", m.status.error)!,
+    "deleted.background": ov("deleted.background", null),
+    "deleted.border": ov("deleted.border", null),
+    error: ov("error", m.status.error)!,
+    "error.background": ov("error.background", withAlpha(m.status.error, 0.1))!,
+    "error.border": ov("error.border", m.status.error)!,
+    hidden: ov("hidden", t.textMuted)!,
+    "hidden.background": ov("hidden.background", null),
+    "hidden.border": ov("hidden.border", null),
+    hint: ov("hint", t.textMuted)!,
+    "hint.background": ov("hint.background", null),
+    "hint.border": ov("hint.border", null),
+    ignored: ov("ignored", withAlpha(t.textMuted, 0.3))!,
+    "ignored.background": ov("ignored.background", null),
+    "ignored.border": ov("ignored.border", null),
+    info: ov("info", m.status.info)!,
+    "info.background": ov("info.background", null),
+    "info.border": ov("info.border", null),
+    modified: ov("modified", m.status.info)!,
+    "modified.background": ov("modified.background", null),
+    "modified.border": ov("modified.border", null),
+    predictive: ov("predictive", t.textMuted)!,
+    "predictive.background": ov("predictive.background", null),
+    "predictive.border": ov("predictive.border", null),
+    renamed: ov("renamed", m.status.success)!,
+    "renamed.background": ov("renamed.background", null),
+    "renamed.border": ov("renamed.border", null),
+    success: ov("success", m.status.success)!,
+    "success.background": ov("success.background", null),
+    "success.border": ov("success.border", null),
+    unreachable: ov("unreachable", m.status.error)!,
+    "unreachable.background": ov("unreachable.background", null),
+    "unreachable.border": ov("unreachable.border", null),
+    warning: ov("warning", m.status.warning)!,
+    "warning.background": ov("warning.background", withAlpha(m.status.warning, 0.1))!,
+    "warning.border": ov("warning.border", m.status.warning)!,
     players: players.map((p) => ({
       cursor: p.cursor,
       background: p.background,
       selection: p.selection,
     })),
-    syntax: buildSyntaxObject(s, m, themeName),
+    syntax: buildSyntaxObject(s, m),
   };
 }
 
-function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema, themeName: string): Record<string, unknown> {
-  const base24 = m.base24;
-  const isGitHub = themeName === "GitHub";
-  const isDracula = themeName === "Dracula";
-  const isOneDark = themeName === "One Dark Pro";
-  const palette = m.meta.basePalette;
+function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema): Record<string, unknown> {
+  const zedCustom = (m.meta.customizations?.plugins?.zed ?? {}) as ZedCustomizations;
+  const syntaxOverrides = zedCustom.syntax ?? {};
 
   const result: Record<string, unknown> = {};
   for (const [key, val] of Object.entries(s)) {
@@ -253,102 +267,9 @@ function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema, themeName
     };
   }
 
-  if (isGitHub) {
-    result["string"] = { color: "#a5d6ffff", background_color: null, font_style: null, font_weight: null };
-    result["title"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: 700 };
-    result["number"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
-    result["boolean"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
-    result["constant"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
-    result["type"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
-    result["keyword"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["preproc"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["embedded"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["variant"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
-    result["attribute"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
-    result["tag"] = { color: "#7ee787", background_color: null, font_style: null, font_weight: null };
-    result["stringEscape"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["punctuation"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["punctuation.bracket"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuation.delimiter"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuation.delimiter.jsx"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["punctuation.list_marker"] = { color: "#ffa657", background_color: null, font_style: null, font_weight: null };
-    result["punctuation.special"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["operator"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["label"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["constructor"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["comment"] = { color: "#7d8590", background_color: null, font_style: null, font_weight: null };
-    result["commentDoc"] = { color: "#7d8590", background_color: null, font_style: null, font_weight: null };
-  }
-
-  if (isDracula) {
-    result["string"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
-    result["number"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
-    result["punctuation"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["operator"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["preproc"] = { color: palette.muted, background_color: null, font_style: null, font_weight: null };
-    result["function_"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["functionBuiltin"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["functionCall"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["functionMacro"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["method"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["methodCall"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
-    result["type"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["typeBuiltin"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["typeClass"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["typeDefinition"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["typeInterface"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["typeSuper"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["attribute"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["property"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["variableSpecial"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["variableParameter"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
-    result["stringRegex"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["commentDoc"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["constantBuiltin"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["constantMacro"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["constructor"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["stringSpecial"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["stringSpecialSymbol"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["tag"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["emphasis"] = { color: palette.yellow, background_color: null, font_style: "italic", font_weight: null };
-    result["emphasisStrong"] = { color: palette.orange, background_color: null, font_style: null, font_weight: 700 };
-    result["enum"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
-    result["constant"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
-    result["title"] = { color: palette.accent, background_color: null, font_style: null, font_weight: 600 };
-    result["variant"] = { color: palette.accent, background_color: null, font_style: null, font_weight: null };
-    result["boolean"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["stringEscape"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-  }
-
-  if (isOneDark) {
-    result["comment"] = { color: "#7f838c", background_color: null, font_style: null, font_weight: null };
-    result["variable"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["variableBuiltin"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["variableMember"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["variableSpecial"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
-    result["property"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["tag"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["constructor"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["stringRegex"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["stringSpecial"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["stringSpecialSymbol"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
-    result["keyword"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["keywordOperator"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["emphasis"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
-    result["type"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
-    result["title"] = { color: "#d07277ff", background_color: null, font_style: null, font_weight: null };
-    result["punctuation"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuationBracket"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuationDelimiter"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuationSpecial"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["operator"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
-    result["punctuationListMarker"] = { color: "#d07277ff", background_color: null, font_style: null, font_weight: null };
-    result["variant"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["linkText"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["linkUri"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
-    result["enum"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
-    result["attribute"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
-    result["commentDoc"] = { color: "#7f838c", background_color: null, font_style: null, font_weight: null };
+  for (const [key, value] of Object.entries(syntaxOverrides)) {
+    const existing = result[key] as Record<string, unknown> | undefined;
+    result[key] = { ...existing, ...value };
   }
 
   return result;
