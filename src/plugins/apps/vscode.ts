@@ -105,15 +105,15 @@ function buildColors(
     "editorLineNumber.activeForeground": t.editorActiveLineNumber,
     "editorGutter.background": t.editorGutterBackground,
     "editorCursor.foreground": t.textAccent,
-    "editorIndentGuide.background1": indentGuide,
-    "editorIndentGuide.activeBackground1": withAlpha(activeIndentGuide, 0.35),
+    "editorIndentGuide.background1": themeName === "One Dark Pro" ? "#3b4048" : indentGuide,
+    "editorIndentGuide.activeBackground1": themeName === "One Dark Pro" ? "#c8c8c859" : withAlpha(activeIndentGuide, 0.35),
     "editorBracketMatch.background": t.border,
     "editorBracketMatch.border": t.border,
 
     "scrollbar.shadow": t.background,
-    "scrollbarSlider.background": t.scrollbarThumb,
-    "scrollbarSlider.hoverBackground": t.scrollbarThumbHover,
-    "scrollbarSlider.activeBackground": isDark
+    "scrollbarSlider.background": themeName === "One Dark Pro" ? "#4e566660" : t.scrollbarThumb,
+    "scrollbarSlider.hoverBackground": themeName === "One Dark Pro" ? "#5a637580" : t.scrollbarThumbHover,
+    "scrollbarSlider.activeBackground": themeName === "One Dark Pro" ? "#747d9180" : isDark
       ? withAlpha(t.scrollbarThumbHover, 0.7)
       : withAlpha(t.scrollbarThumb, 0.5),
 
@@ -159,7 +159,7 @@ function buildColors(
     "list.hoverForeground": t.textPrimary,
     "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.surface,
     "list.focusBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.selectionBackground,
-    "list.highlightForeground": themeName === "Dracula" ? term.cyan : t.textPrimary,
+    "list.highlightForeground": themeName === "Dracula" ? term.cyan : themeName === "One Dark Pro" ? "#ecebeb" : t.textPrimary,
 
     "button.background": themeName === "Dracula" ? base24.base02 : t.buttonBackground,
     "button.foreground": t.buttonForeground,
