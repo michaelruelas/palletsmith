@@ -25,7 +25,7 @@ export const vscodePlugin = definePlugin({
     const theme = {
       name: `${master.meta.name} ${isDark ? "Dark" : "Light"}`,
       type: appearance,
-      colors: buildColors(t, term, master.status, master.meta.name, withAlpha, isDark),
+      colors: buildColors(t, term, master.status, master.base24, master.meta.name, withAlpha, isDark),
       tokenColors: buildTokenColors(s),
     };
 
@@ -83,6 +83,7 @@ function buildColors(
   t: MasterSchema["tokens"],
   term: MasterSchema["terminal"],
   status: MasterSchema["status"],
+  base24: MasterSchema["base24"],
   themeName: string,
   withAlpha: (hex: string, a: number) => string,
   isDark: boolean,
@@ -200,7 +201,7 @@ function buildColors(
     "gitDecoration.addedResourceForeground": status.success,
     "gitDecoration.untrackedResourceForeground": status.success,
     "gitDecoration.renamedResourceForeground": status.info,
-    "gitDecoration.conflictingResourceForeground": status.warning,
+    "gitDecoration.conflictingResourceForeground": themeName === "Dracula" ? base24.base09 : status.warning,
     "gitDecoration.ignoredResourceForeground": t.textMuted,
 
     "editorError.foreground": status.error,
