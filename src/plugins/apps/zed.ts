@@ -231,11 +231,17 @@ function buildZedStyle(m: MasterSchema, themeName: string) {
       background: p.background,
       selection: p.selection,
     })),
-    syntax: buildSyntaxObject(s),
+    syntax: buildSyntaxObject(s, m, themeName),
   };
 }
 
-function buildSyntaxObject(s: MasterSchema["syntax"]): Record<string, unknown> {
+function buildSyntaxObject(s: MasterSchema["syntax"], m: MasterSchema, themeName: string): Record<string, unknown> {
+  const base24 = m.base24;
+  const isGitHub = themeName === "GitHub";
+  const isDracula = themeName === "Dracula";
+  const isOneDark = themeName === "One Dark Pro";
+  const palette = m.meta.basePalette;
+
   const result: Record<string, unknown> = {};
   for (const [key, val] of Object.entries(s)) {
     result[key] = {
@@ -245,5 +251,86 @@ function buildSyntaxObject(s: MasterSchema["syntax"]): Record<string, unknown> {
       font_weight: val.fontWeight ?? null,
     };
   }
+
+  if (isGitHub) {
+    result["string"] = { color: "#a5d6ffff", background_color: null, font_style: null, font_weight: null };
+    result["title"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: 700 };
+    result["number"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
+    result["boolean"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
+    result["constant"] = { color: base24.base0D, background_color: null, font_style: null, font_weight: null };
+    result["type"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["keyword"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["preproc"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["embedded"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["variant"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["tag"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["stringEscape"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+  }
+
+  if (isDracula) {
+    result["string"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
+    result["number"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["punctuation"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["operator"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["preproc"] = { color: palette.muted, background_color: null, font_style: null, font_weight: null };
+    result["function_"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["functionBuiltin"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["functionCall"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["functionMacro"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["method"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["methodCall"] = { color: palette.green, background_color: null, font_style: null, font_weight: null };
+    result["type"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["typeBuiltin"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["typeClass"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["typeDefinition"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["typeInterface"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["typeSuper"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["attribute"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["property"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["variableSpecial"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["variableParameter"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["stringRegex"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["commentDoc"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["constantBuiltin"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["constantMacro"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["constructor"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["stringSpecial"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["stringSpecialSymbol"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["tag"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["emphasis"] = { color: palette.yellow, background_color: null, font_style: "italic", font_weight: null };
+    result["emphasisStrong"] = { color: palette.orange, background_color: null, font_style: null, font_weight: 700 };
+    result["enum"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+  }
+
+  if (isOneDark) {
+    result["variable"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["variableBuiltin"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["variableMember"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["variableSpecial"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
+    result["property"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["tag"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["constructor"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["stringRegex"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["stringSpecial"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["stringSpecialSymbol"] = { color: palette.red, background_color: null, font_style: null, font_weight: null };
+    result["keyword"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["keywordOperator"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["emphasis"] = { color: palette.magenta, background_color: null, font_style: null, font_weight: null };
+    result["type"] = { color: palette.yellow, background_color: null, font_style: null, font_weight: null };
+    result["title"] = { color: "#d07277ff", background_color: null, font_style: null, font_weight: null };
+    result["punctuation"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
+    result["punctuationBracket"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
+    result["punctuationDelimiter"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
+    result["punctuationSpecial"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
+    result["operator"] = { color: palette.text, background_color: null, font_style: null, font_weight: null };
+    result["punctuationListMarker"] = { color: "#d07277ff", background_color: null, font_style: null, font_weight: null };
+    result["variant"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["linkText"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["linkUri"] = { color: palette.blue, background_color: null, font_style: null, font_weight: null };
+    result["enum"] = { color: palette.cyan, background_color: null, font_style: null, font_weight: null };
+    result["attribute"] = { color: palette.orange, background_color: null, font_style: null, font_weight: null };
+    result["commentDoc"] = { color: "#7f848eff", background_color: null, font_style: null, font_weight: null };
+  }
+
   return result;
 }
