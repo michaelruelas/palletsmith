@@ -14,7 +14,7 @@ export const draculaPalette: Palette = {
   yellow: "#F1FA8C",
   green: "#50FA7B",
   cyan: "#8BE9FD",
-  blue: "#8BE9FD",
+  blue: "#BD93F9",
   magenta: "#FF79C6",
 };
 

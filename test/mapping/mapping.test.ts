@@ -7,6 +7,7 @@ import { vscodePlugin } from "../../src/plugins/apps/vscode.ts";
 import type { MasterSchema, Palette } from "../../src/core/types.ts";
 import { draculaPalette } from "../../src/presets/dracula.ts";
 import { oneDarkPalette } from "../../src/presets/onedark.ts";
+import { githubDarkPalette } from "../../src/presets/github.ts";
 
 interface VscodeTheme {
   name: string;
@@ -241,6 +242,11 @@ describe("VS Code theme mapping accuracy", () => {
       name: "Dracula",
       palette: draculaPalette,
       fixturePath: resolve(__dirname, "fixtures/dracula_vscode.json"),
+    },
+    {
+      name: "GitHub",
+      palette: githubDarkPalette,
+      fixturePath: resolve(__dirname, "fixtures/github_vscode.json"),
     },
   ];
 

@@ -104,14 +104,17 @@ function deriveBase0F(orange: ColorHex, isDark: boolean): ColorHex {
 
 /**
  * Derive a bright variant of an accent color.
- * For dark themes: increase lightness by ~20%, slightly desaturate.
- * For light themes: increase lightness by ~10%, slightly desaturate.
+ * For dark themes: keep lightness similar, boost saturation to make colors vivid.
+ * For light themes: increase lightness slightly, maintain saturation.
+ * Bright variants should be the same hue - just more intense/vivid.
  */
 function lightenBright(hex: ColorHex, isDark: boolean): ColorHex {
   const hsl = rgbToHsl(hexToRgb(hex));
-  hsl.s = Math.max(0, hsl.s - 10);
+  hsl.s = isDark
+    ? Math.min(100, hsl.s + 15)
+    : Math.min(100, hsl.s + 5);
   hsl.l = isDark
-    ? Math.min(100, hsl.l + 20)
-    : Math.min(100, hsl.l + 10);
+    ? Math.min(100, hsl.l + 8)
+    : Math.min(100, hsl.l + 12);
   return rgbToHex(hslToRgb(hsl));
 }

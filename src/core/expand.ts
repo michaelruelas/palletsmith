@@ -123,9 +123,9 @@ function deriveSemanticTokens(
     dropdownBorder: b.base02,
 
     // Buttons
-    buttonBackground: accent,
+    buttonBackground: blend(b.base02, b.base01, isDark ? 0.6 : 0.4),
     buttonForeground: getAccessibleForeground(accent, b.base00, b.base05),
-    buttonHoverBackground: isDark ? lighten(accent, 8) : darken(accent, 8),
+    buttonHoverBackground: accent,
 
     // Links & status
     linkForeground: accent,
