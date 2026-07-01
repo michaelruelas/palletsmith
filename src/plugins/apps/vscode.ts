@@ -119,7 +119,7 @@ function buildColors(
 
     "panel.background": themeName === "GitHub" ? "#010409" : t.panelBackground,
     "panel.foreground": t.textPrimary,
-    "panel.border": themeName === "GitHub" ? "#30363d" : themeName === "Dracula" ? t.textAccent : t.panelBorder,
+    "panel.border": themeName === "GitHub" ? "#30363d" : themeName === "Dracula" ? t.textAccent : themeName === "One Dark Pro" ? "#3e4452" : t.panelBorder,
     "panelTitle.activeBorder": themeName === "GitHub" ? "#f78166" : themeName === "Dracula" ? term.magenta : t.borderFocused,
 
     "statusBar.background": themeName === "GitHub" ? "#0d1117" : themeName === "Dracula" ? "#191a21" : t.statusBarBackground,
@@ -171,7 +171,7 @@ function buildColors(
     "tab.border": themeName === "GitHub" ? "#30363d" : themeName === "Dracula" ? "#191a21" : themeName === "One Dark Pro" ? "#181a1f" : t.border,
     "tab.hoverBackground": themeName === "GitHub" ? "#0d1117" : themeName === "One Dark Pro" ? "#323842" : t.hoverBackground,
 
-    "focusBorder": themeName === "GitHub" ? "#1f6feb" : themeName === "Dracula" ? t.textMuted : themeName === "One Dark Pro" ? base24.base02 : t.focusRing,
+    "focusBorder": themeName === "GitHub" ? "#1f6feb" : themeName === "Dracula" ? t.textMuted : themeName === "One Dark Pro" ? "#3e4452" : t.focusRing,
     "foreground": t.textPrimary,
     "descriptionForeground": themeName === "GitHub" ? "#7d8590" : t.textPrimary,
     "textLink.foreground": themeName === "GitHub" ? "#2f81f7" : t.linkForeground,
