@@ -81,6 +81,7 @@ export const ghosttyPlugin = definePlugin({
       `background = ${bg}`,
       `foreground = ${term.foreground}`,
       `cursor-color = ${cursorColor}`,
+      `cursor-text = ${term.background}`,
       `selection-background = ${selectionBackground}`,
       `selection-foreground = ${term.selectionForeground}`,
       "",
