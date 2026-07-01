@@ -55,10 +55,10 @@
   </table>
 </div>
 <div class="legend">
-  <span>Accuracy:</span>
-  <div class="legend-item"><div class="legend-swatch" style="background:#3fb950"></div> ≥50%</div>
-  <div class="legend-item"><div class="legend-swatch" style="background:#d29922"></div> 25–49%</div>
-  <div class="legend-item"><div class="legend-swatch" style="background:#f85149"></div> &lt;25%</div>
+  <span>Closeness:</span>
+  <div class="legend-item"><div class="legend-swatch" style="background:#3fb950"></div> ≥70%</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#d29922"></div> 40–69%</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#f85149"></div> &lt;40%</div>
   <div class="legend-item" style="margin-left:1rem"><span>Coverage:</span></div>
   <div class="legend-item"><div class="legend-swatch" style="background:#58a6ff"></div> keys count</div>
 </div>
@@ -87,13 +87,16 @@ async function load() {
 
       if (!app) {
         td.innerHTML = '<span class="score score-na">—</span>';
-      } else if (app.score !== undefined) {
-        const scoreClass = app.score >= 50 ? "green" : app.score >= 25 ? "yellow" : "red";
-        const statusClass = app.score >= 50 ? "#3fb950" : app.score >= 25 ? "#d29922" : "#f85149";
-        td.innerHTML = `<div><span class="score" style="color:${statusClass}">${app.score}%</span></div>`;
-        if (app.total !== undefined) {
-          td.innerHTML += `<div class="coverage">${app.exactCount}/${app.total} exact${app.closeCount > 0 ? `, ${app.closeCount} close` : ""}</div>`;
-        }
+      } else if (app.comparison) {
+        const c = app.comparison;
+        const closeness = c.overallCloseness;
+        const statusClass = closeness >= 70 ? "#3fb950" : closeness >= 40 ? "#d29922" : "#f85149";
+        td.innerHTML = `<div><span class="score" style="color:${statusClass}">${closeness}%</span></div>`;
+        let details = `${c.exactCount} exact`;
+        if (c.nearCount > 0) details += `, ${c.nearCount} near`;
+        if (c.closeCount > 0) details += `, ${c.closeCount} close`;
+        td.innerHTML += `<div class="coverage">${details} / ${c.total} common</div>`;
+        td.innerHTML += `<div class="coverage">μ=${c.meanDistance} σ=${c.stdDevDistance}</div>`;
       } else {
         td.innerHTML = `<div><span class="score" style="color:#58a6ff">${app.keys}</span></div>`;
         td.innerHTML += `<div class="coverage">keys</div>`;
