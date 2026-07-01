@@ -110,7 +110,7 @@ function buildColors(
     "editorBracketMatch.background": themeName === "One Dark Pro" ? "#515a6b" : t.border,
     "editorBracketMatch.border": themeName === "One Dark Pro" ? "#515a6b" : t.border,
 
-    "scrollbar.shadow": t.background,
+    "scrollbar.shadow": themeName === "One Dark Pro" ? "#23252c" : t.background,
     "scrollbarSlider.background": themeName === "One Dark Pro" ? "#4e566660" : t.scrollbarThumb,
     "scrollbarSlider.hoverBackground": themeName === "One Dark Pro" ? "#5a637580" : t.scrollbarThumbHover,
     "scrollbarSlider.activeBackground": themeName === "One Dark Pro" ? "#747d9180" : isDark
@@ -123,16 +123,16 @@ function buildColors(
     "panelTitle.activeBorder": themeName === "Dracula" ? term.magenta : t.borderFocused,
 
     "statusBar.background": t.statusBarBackground,
-    "statusBar.foreground": t.textPrimary,
+    "statusBar.foreground": themeName === "One Dark Pro" ? "#9da5b4" : t.textPrimary,
     "statusBar.debuggingBackground": themeName === "One Dark Pro" ? "#cc6633" : status.error,
     "statusBar.noFolderBackground": t.statusBarBackground,
 
     "titleBar.activeBackground": t.titleBarBackground,
-    "titleBar.activeForeground": t.textPrimary,
+    "titleBar.activeForeground": themeName === "One Dark Pro" ? "#9da5b4" : t.textPrimary,
     "titleBar.inactiveBackground": themeName === "Dracula" ? "#191a21" : t.titleBarBackground,
-    "titleBar.inactiveForeground": t.textMuted,
+    "titleBar.inactiveForeground": themeName === "One Dark Pro" ? "#6b717d" : t.textMuted,
 
-    "activityBar.background": themeName === "Dracula" ? "#343746" : t.activityBarBackground,
+    "activityBar.background": themeName === "Dracula" ? "#343746" : themeName === "One Dark Pro" ? "#282c34" : t.activityBarBackground,
     "activityBar.foreground": themeName === "One Dark Pro" ? "#d7dae0" : t.activityBarForeground,
     "activityBar.inactiveForeground": t.textMuted,
     "activityBarBadge.background": themeName === "Dracula" ? term.magenta : themeName === "One Dark Pro" ? "#4d78cc" : t.textAccent,
@@ -164,8 +164,8 @@ function buildColors(
     "button.background": themeName === "Dracula" ? base24.base02 : themeName === "One Dark Pro" ? "#404754" : t.buttonBackground,
     "button.foreground": t.buttonForeground,
 
-    "tab.activeBackground": t.tabActiveBackground,
-    "tab.inactiveBackground": t.tabInactiveBackground,
+    "tab.activeBackground": themeName === "One Dark Pro" ? "#282c34" : t.tabActiveBackground,
+    "tab.inactiveBackground": themeName === "One Dark Pro" ? "#21252b" : t.tabInactiveBackground,
     "tab.activeForeground": themeName === "One Dark Pro" ? "#dcdcdc" : t.textPrimary,
     "tab.inactiveForeground": t.textMuted,
     "tab.border": themeName === "Dracula" ? "#191a21" : themeName === "One Dark Pro" ? "#181a1f" : t.border,
@@ -183,7 +183,7 @@ function buildColors(
     "terminal.ansiBrightBlack": themeName === "One Dark Pro" ? "#4f5666" : term.brightBlack,
     "terminal.ansiRed": themeName === "One Dark Pro" ? "#e05561" : term.red,
     "terminal.ansiBrightRed": themeName === "One Dark Pro" ? "#ff616e" : term.brightRed,
-    "terminal.ansiGreen": term.green,
+    "terminal.ansiGreen": themeName === "One Dark Pro" ? "#8cc265" : term.green,
     "terminal.ansiBrightGreen": themeName === "One Dark Pro" ? "#a5e075" : term.brightGreen,
     "terminal.ansiYellow": themeName === "One Dark Pro" ? base24.base09 : term.yellow,
     "terminal.ansiBrightYellow": themeName === "One Dark Pro" ? "#f0a45d" : term.brightYellow,
@@ -202,7 +202,7 @@ function buildColors(
     "gitDecoration.untrackedResourceForeground": status.success,
     "gitDecoration.renamedResourceForeground": status.info,
     "gitDecoration.conflictingResourceForeground": themeName === "Dracula" ? base24.base09 : status.warning,
-    "gitDecoration.ignoredResourceForeground": t.textMuted,
+    "gitDecoration.ignoredResourceForeground": themeName === "One Dark Pro" ? "#636b78" : t.textMuted,
 
     "editorError.foreground": themeName === "One Dark Pro" ? "#c24038" : status.error,
     "editorWarning.foreground": themeName === "Dracula" ? term.cyan : base24.base09,
