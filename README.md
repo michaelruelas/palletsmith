@@ -30,6 +30,8 @@ cd ./my-theme && palletsmith build
 |--------|-------------|
 | Evergreen | Clean green-accent theme (dark + light) |
 | Dracula | Classic purple-dark theme |
+| One Dark Pro | Atom-inspired dark theme |
+| GitHub | GitHub Dark theme |
 
 ## Benchmark
 
