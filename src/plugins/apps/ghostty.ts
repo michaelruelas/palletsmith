@@ -60,16 +60,22 @@ export const ghosttyPlugin = definePlugin({
       ? blend(withAlpha(term.background, opacity), "#000000", 1 - opacity)
       : term.background;
 
-    const cursorColor = themeName === "Dracula"
-      ? term.foreground
-      : themeName === "One Dark Pro"
-        ? "#528bff"
-        : term.cursor;
+    const isGitHub = themeName === "GitHub";
+    const isDracula = themeName === "Dracula";
+    const isOneDark = themeName === "One Dark Pro";
 
-    const selectionBackground = themeName === "Dracula"
+    const cursorColor = isDracula
+      ? term.foreground
+      : isOneDark
+        ? "#528bff"
+        : isGitHub
+          ? "#c9d1d9"
+          : term.cursor;
+
+    const selectionBackground = isDracula || isOneDark
       ? master.base24.base02
-      : themeName === "One Dark Pro"
-        ? master.base24.base02
+      : isGitHub
+        ? "#3b5070"
         : term.selectionBackground;
 
     const lines: string[] = [
@@ -78,12 +84,12 @@ export const ghosttyPlugin = definePlugin({
       "",
       ...buildPaletteLines(term, themeName, master.base24),
       "",
-      `background = ${bg}`,
-      `foreground = ${term.foreground}`,
+      `background = ${isGitHub ? "#101216" : bg}`,
+      `foreground = ${isGitHub ? "#8b949e" : term.foreground}`,
       `cursor-color = ${cursorColor}`,
-      `cursor-text = ${term.background}`,
+      `cursor-text = ${isGitHub ? "#101216" : term.background}`,
       `selection-background = ${selectionBackground}`,
-      `selection-foreground = ${term.selectionForeground}`,
+      `selection-foreground = ${isGitHub ? "#ffffff" : term.selectionForeground}`,
       "",
       `title = ${master.meta.name}`,
     ];
@@ -139,11 +145,32 @@ function buildPaletteLines(
     "15": "#ffffff",
   };
 
+  const githubOverrides: Record<string, string> = {
+    "0": "#000000",
+    "1": "#f78166",
+    "2": "#56d364",
+    "3": "#e3b341",
+    "4": "#6ca4f8",
+    "5": "#db61a2",
+    "6": "#2b7489",
+    "7": "#ffffff",
+    "8": "#4d4d4d",
+    "9": "#f78166",
+    "10": "#56d364",
+    "11": "#e3b341",
+    "12": "#6ca4f8",
+    "13": "#db61a2",
+    "14": "#2b7489",
+    "15": "#ffffff",
+  };
+
   const overrides = themeName === "Dracula"
     ? draculaOverrides
     : themeName === "One Dark Pro"
       ? oneDarkProOverrides
-      : {};
+      : themeName === "GitHub"
+        ? githubOverrides
+        : {};
 
   const palette = [
     ["0", term.black],
