@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-01T11:44:03.573Z",
-  "commit": "unknown",
+  "generatedAt": "2026-07-01T11:48:22.349Z",
+  "commit": "15c6f90",
   "results": [
     {
       "theme": "Dracula",
@@ -9,14 +9,14 @@
         "zed": {
           "keys": 235,
           "comparison": {
-            "overallCloseness": 92,
-            "meanDistance": 11.85,
+            "overallCloseness": 96,
+            "meanDistance": 6.41,
             "medianDistance": 0,
-            "maxDistance": 79.81,
+            "maxDistance": 49.24,
             "minDistance": 0,
-            "stdDevDistance": 19.14,
+            "stdDevDistance": 12.18,
             "total": 125,
-            "exactCount": 77,
+            "exactCount": 92,
             "nearCount": 0,
             "closeCount": 5,
             "buckets": [
@@ -24,22 +24,29 @@
                 "label": "exact",
                 "minDist": 0,
                 "maxDist": 0,
-                "count": 77,
+                "count": 92,
                 "keys": [
                   "border.transparent",
                   "background",
                   "element.active",
+                  "element.selected",
                   "element.disabled",
                   "drop_target.background",
+                  "ghost_element.background",
                   "ghost_element.disabled",
                   "text",
+                  "text.muted",
                   "text.placeholder",
                   "text.disabled",
                   "icon",
                   "icon.muted",
                   "icon.disabled",
                   "icon.placeholder",
+                  "status_bar.background",
+                  "title_bar.background",
+                  "title_bar.inactive_background",
                   "search.match_background",
+                  "panel.background",
                   "panel.indent_guide",
                   "panel.indent_guide_active",
                   "pane.focused_border",
@@ -48,6 +55,8 @@
                   "editor.foreground",
                   "editor.background",
                   "editor.gutter.background",
+                  "editor.subheader.background",
+                  "editor.highlighted_line.background",
                   "editor.line_number",
                   "editor.active_line_number",
                   "editor.invisible",
@@ -65,14 +74,20 @@
                   "terminal.ansi.black",
                   "terminal.ansi.bright_black",
                   "terminal.ansi.red",
+                  "terminal.ansi.bright_red",
                   "terminal.ansi.green",
+                  "terminal.ansi.bright_green",
                   "terminal.ansi.yellow",
+                  "terminal.ansi.bright_yellow",
                   "terminal.ansi.blue",
                   "terminal.ansi.bright_blue",
                   "terminal.ansi.magenta",
+                  "terminal.ansi.bright_magenta",
                   "terminal.ansi.cyan",
+                  "terminal.ansi.bright_cyan",
                   "terminal.ansi.white",
                   "link_text.hover",
+                  "conflict",
                   "deleted",
                   "hidden",
                   "hint",
@@ -129,7 +144,7 @@
                 "label": "moderate",
                 "minDist": 10.1,
                 "maxDist": 50,
-                "count": 36,
+                "count": 28,
                 "keys": [
                   "border",
                   "border.variant",
@@ -142,12 +157,9 @@
                   "ghost_element.selected",
                   "text.accent",
                   "icon.accent",
-                  "status_bar.background",
-                  "title_bar.background",
                   "toolbar.background",
                   "tab.inactive_background",
                   "tab.active_background",
-                  "panel.background",
                   "panel.focused_border",
                   "panel.indent_guide_hover",
                   "pane_group.border",
@@ -156,11 +168,6 @@
                   "scrollbar.track.border",
                   "editor.active_line.background",
                   "editor.document_highlight.read_background",
-                  "terminal.ansi.bright_red",
-                  "terminal.ansi.bright_green",
-                  "terminal.ansi.bright_yellow",
-                  "terminal.ansi.bright_magenta",
-                  "terminal.ansi.bright_cyan",
                   "created",
                   "error",
                   "error.border",
@@ -173,16 +180,8 @@
                 "label": "far",
                 "minDist": 50.1,
                 "maxDist": 442,
-                "count": 7,
-                "keys": [
-                  "element.selected",
-                  "ghost_element.background",
-                  "text.muted",
-                  "title_bar.inactive_background",
-                  "editor.subheader.background",
-                  "editor.highlighted_line.background",
-                  "conflict"
-                ]
+                "count": 0,
+                "keys": []
               }
             ],
             "deltas": [
@@ -343,16 +342,16 @@
               {
                 "key": "element.selected",
                 "expected": "#282232ff",
-                "actual": "#4c4365",
-                "distance": 70.61,
-                "closeness": 53,
-                "deltaR": 36,
-                "deltaG": 33,
-                "deltaB": 51,
-                "deltaH": -7,
-                "deltaS": 1,
-                "deltaL": 17,
-                "luminanceDelta": 0.04664934094675671
+                "actual": "#282232",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "element.disabled",
@@ -385,16 +384,16 @@
               {
                 "key": "ghost_element.background",
                 "expected": "#00000000",
-                "actual": "#282a36",
-                "distance": 79.25,
-                "closeness": 47,
-                "deltaR": 40,
-                "deltaG": 42,
-                "deltaB": 54,
-                "deltaH": 231,
-                "deltaS": 15,
-                "deltaL": 18,
-                "luminanceDelta": 0.023733867415482342
+                "actual": "#00000000",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "ghost_element.hover",
@@ -469,16 +468,16 @@
               {
                 "key": "text.muted",
                 "expected": "#a186c7ff",
-                "actual": "#6272a4",
-                "distance": 74.79,
-                "closeness": 50,
-                "deltaR": -63,
-                "deltaG": -20,
-                "deltaB": -35,
-                "deltaH": -40,
-                "deltaS": -10,
-                "deltaL": -14,
-                "luminanceDelta": 0.1143914896014139
+                "actual": "#a186c7",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "text.placeholder",
@@ -595,44 +594,44 @@
               {
                 "key": "status_bar.background",
                 "expected": "#141119bb",
-                "actual": "#21222c",
-                "distance": 28.62,
-                "closeness": 81,
-                "deltaR": 13,
-                "deltaG": 17,
-                "deltaB": 19,
-                "deltaH": -28,
-                "deltaS": -5,
-                "deltaL": 7,
-                "luminanceDelta": 0.010294298260455657
+                "actual": "#141119bb",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "title_bar.background",
                 "expected": "#141119bb",
-                "actual": "#282a36",
-                "distance": 43.2,
-                "closeness": 71,
-                "deltaR": 20,
-                "deltaG": 25,
-                "deltaB": 29,
-                "deltaH": -32,
-                "deltaS": -4,
-                "deltaL": 10,
-                "luminanceDelta": 0.01753579522951876
+                "actual": "#141119bb",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "title_bar.inactive_background",
                 "expected": "#0a080cbb",
-                "actual": "#282a36",
-                "distance": 61.81,
-                "closeness": 59,
-                "deltaR": 30,
-                "deltaG": 34,
-                "deltaB": 42,
-                "deltaH": -39,
-                "deltaS": -5,
-                "deltaL": 14,
-                "luminanceDelta": 0.02108646523058826
+                "actual": "#0a080cbb",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "toolbar.background",
@@ -707,16 +706,16 @@
               {
                 "key": "panel.background",
                 "expected": "#16121bff",
-                "actual": "#282a36",
-                "distance": 40.36,
-                "closeness": 73,
-                "deltaR": 18,
-                "deltaG": 24,
-                "deltaB": 27,
-                "deltaH": -36,
-                "deltaS": -5,
-                "deltaL": 9,
-                "luminanceDelta": 0.016910692421573677
+                "actual": "#16121b",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "panel.focused_border",
@@ -917,16 +916,16 @@
               {
                 "key": "editor.subheader.background",
                 "expected": "#1e1925ff",
-                "actual": "#44475a",
-                "distance": 79.81,
-                "closeness": 47,
-                "deltaR": 38,
-                "deltaG": 46,
-                "deltaB": 53,
-                "deltaH": -33,
-                "deltaS": -5,
-                "deltaL": 19,
-                "luminanceDelta": 0.05368752901647822
+                "actual": "#1e1925",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "editor.active_line.background",
@@ -945,16 +944,16 @@
               {
                 "key": "editor.highlighted_line.background",
                 "expected": "#44475aff",
-                "actual": "#282a36",
-                "distance": 54.05,
-                "closeness": 64,
-                "deltaR": -28,
-                "deltaG": -29,
-                "deltaB": -36,
-                "deltaH": -1,
-                "deltaS": 1,
-                "deltaL": -13,
-                "luminanceDelta": 0.04100218479764498
+                "actual": "#44475a",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "editor.line_number",
@@ -1211,16 +1210,16 @@
               {
                 "key": "terminal.ansi.bright_red",
                 "expected": "#ff6e6eff",
-                "actual": "#ff8080",
-                "distance": 25.46,
-                "closeness": 83,
+                "actual": "#ff6e6e",
+                "distance": 0,
+                "closeness": 100,
                 "deltaR": 0,
-                "deltaG": 18,
-                "deltaB": 18,
+                "deltaG": 0,
+                "deltaB": 0,
                 "deltaH": 0,
                 "deltaS": 0,
-                "deltaL": 3,
-                "luminanceDelta": 0.047192060266141034
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "terminal.ansi.green",
@@ -1239,16 +1238,16 @@
               {
                 "key": "terminal.ansi.bright_green",
                 "expected": "#69ff94ff",
-                "actual": "#75ff98",
-                "distance": 12.65,
-                "closeness": 92,
-                "deltaR": 12,
+                "actual": "#69ff94",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
                 "deltaG": 0,
-                "deltaB": 4,
-                "deltaH": -2,
+                "deltaB": 0,
+                "deltaH": 0,
                 "deltaS": 0,
-                "deltaL": 2,
-                "luminanceDelta": 0.009075303495785891
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "terminal.ansi.yellow",
@@ -1267,16 +1266,16 @@
               {
                 "key": "terminal.ansi.bright_yellow",
                 "expected": "#ffffa5ff",
-                "actual": "#f8ffad",
-                "distance": 10.63,
-                "closeness": 93,
-                "deltaR": -7,
+                "actual": "#ffffa5",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
                 "deltaG": 0,
-                "deltaB": 8,
-                "deltaH": 5,
+                "deltaB": 0,
+                "deltaH": 0,
                 "deltaS": 0,
-                "deltaL": 2,
-                "luminanceDelta": 0.010030237294560873
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "terminal.ansi.blue",
@@ -1323,16 +1322,16 @@
               {
                 "key": "terminal.ansi.bright_magenta",
                 "expected": "#ff92dfff",
-                "actual": "#ffa3d7",
-                "distance": 18.79,
-                "closeness": 87,
+                "actual": "#ff92df",
+                "distance": 0,
+                "closeness": 100,
                 "deltaR": 0,
-                "deltaG": 17,
-                "deltaB": -8,
-                "deltaH": 8,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
                 "deltaS": 0,
-                "deltaL": 3,
-                "luminanceDelta": 0.052152004024116905
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "terminal.ansi.cyan",
@@ -1351,16 +1350,16 @@
               {
                 "key": "terminal.ansi.bright_cyan",
                 "expected": "#a4ffffff",
-                "actual": "#b3f1ff",
-                "distance": 20.52,
-                "closeness": 86,
-                "deltaR": 15,
-                "deltaG": -14,
+                "actual": "#a4ffff",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
                 "deltaB": 0,
-                "deltaH": 11,
+                "deltaH": 0,
                 "deltaS": 0,
-                "deltaL": 3,
-                "luminanceDelta": 0.06918213518322058
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "terminal.ansi.white",
@@ -1393,16 +1392,16 @@
               {
                 "key": "conflict",
                 "expected": "#dec184ff",
-                "actual": "#f1fa8cb3",
-                "distance": 60.61,
-                "closeness": 60,
-                "deltaR": 19,
-                "deltaG": 57,
-                "deltaB": 8,
-                "deltaH": 24,
-                "deltaS": 34,
-                "deltaL": 7,
-                "luminanceDelta": 0.33629969230090595
+                "actual": "#dec184",
+                "distance": 0,
+                "closeness": 100,
+                "deltaR": 0,
+                "deltaG": 0,
+                "deltaB": 0,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": 0,
+                "luminanceDelta": 0
               },
               {
                 "key": "created",
@@ -1939,104 +1938,6 @@
             ],
             "worstKeys": [
               {
-                "key": "editor.subheader.background",
-                "expected": "#1e1925ff",
-                "actual": "#44475a",
-                "distance": 79.81,
-                "closeness": 47,
-                "deltaR": 38,
-                "deltaG": 46,
-                "deltaB": 53,
-                "deltaH": -33,
-                "deltaS": -5,
-                "deltaL": 19,
-                "luminanceDelta": 0.05368752901647822
-              },
-              {
-                "key": "ghost_element.background",
-                "expected": "#00000000",
-                "actual": "#282a36",
-                "distance": 79.25,
-                "closeness": 47,
-                "deltaR": 40,
-                "deltaG": 42,
-                "deltaB": 54,
-                "deltaH": 231,
-                "deltaS": 15,
-                "deltaL": 18,
-                "luminanceDelta": 0.023733867415482342
-              },
-              {
-                "key": "text.muted",
-                "expected": "#a186c7ff",
-                "actual": "#6272a4",
-                "distance": 74.79,
-                "closeness": 50,
-                "deltaR": -63,
-                "deltaG": -20,
-                "deltaB": -35,
-                "deltaH": -40,
-                "deltaS": -10,
-                "deltaL": -14,
-                "luminanceDelta": 0.1143914896014139
-              },
-              {
-                "key": "element.selected",
-                "expected": "#282232ff",
-                "actual": "#4c4365",
-                "distance": 70.61,
-                "closeness": 53,
-                "deltaR": 36,
-                "deltaG": 33,
-                "deltaB": 51,
-                "deltaH": -7,
-                "deltaS": 1,
-                "deltaL": 17,
-                "luminanceDelta": 0.04664934094675671
-              },
-              {
-                "key": "title_bar.inactive_background",
-                "expected": "#0a080cbb",
-                "actual": "#282a36",
-                "distance": 61.81,
-                "closeness": 59,
-                "deltaR": 30,
-                "deltaG": 34,
-                "deltaB": 42,
-                "deltaH": -39,
-                "deltaS": -5,
-                "deltaL": 14,
-                "luminanceDelta": 0.02108646523058826
-              },
-              {
-                "key": "conflict",
-                "expected": "#dec184ff",
-                "actual": "#f1fa8cb3",
-                "distance": 60.61,
-                "closeness": 60,
-                "deltaR": 19,
-                "deltaG": 57,
-                "deltaB": 8,
-                "deltaH": 24,
-                "deltaS": 34,
-                "deltaL": 7,
-                "luminanceDelta": 0.33629969230090595
-              },
-              {
-                "key": "editor.highlighted_line.background",
-                "expected": "#44475aff",
-                "actual": "#282a36",
-                "distance": 54.05,
-                "closeness": 64,
-                "deltaR": -28,
-                "deltaG": -29,
-                "deltaB": -36,
-                "deltaH": -1,
-                "deltaS": 1,
-                "deltaL": -13,
-                "luminanceDelta": 0.04100218479764498
-              },
-              {
                 "key": "error",
                 "expected": "#e67373ff",
                 "actual": "#ff5555",
@@ -2077,6 +1978,104 @@
                 "deltaS": 20,
                 "deltaL": -2,
                 "luminanceDelta": 0.08059846654120373
+              },
+              {
+                "key": "created",
+                "expected": "#73fb95ff",
+                "actual": "#50fa7b",
+                "distance": 43.61,
+                "closeness": 71,
+                "deltaR": -35,
+                "deltaG": -1,
+                "deltaB": -26,
+                "deltaH": 0,
+                "deltaS": 0,
+                "deltaL": -7,
+                "luminanceDelta": 0.03302376355176484
+              },
+              {
+                "key": "warning",
+                "expected": "#e6e373ff",
+                "actual": "#f1fa8c",
+                "distance": 35.71,
+                "closeness": 76,
+                "deltaR": 11,
+                "deltaG": 23,
+                "deltaB": 25,
+                "deltaH": 7,
+                "deltaS": 22,
+                "deltaL": 8,
+                "luminanceDelta": 0.15966467119684247
+              },
+              {
+                "key": "warning.border",
+                "expected": "#e6e373ff",
+                "actual": "#f1fa8c",
+                "distance": 35.71,
+                "closeness": 76,
+                "deltaR": 11,
+                "deltaG": 23,
+                "deltaB": 25,
+                "deltaH": 7,
+                "deltaS": 22,
+                "deltaL": 8,
+                "luminanceDelta": 0.15966467119684247
+              },
+              {
+                "key": "border",
+                "expected": "#3c324bcc",
+                "actual": "#44475a",
+                "distance": 27.02,
+                "closeness": 82,
+                "deltaR": 8,
+                "deltaG": 21,
+                "deltaB": 15,
+                "deltaH": -32,
+                "deltaS": -6,
+                "deltaL": 6,
+                "luminanceDelta": 0.027237423397620628
+              },
+              {
+                "key": "pane_group.border",
+                "expected": "#3c324bcc",
+                "actual": "#44475a",
+                "distance": 27.02,
+                "closeness": 82,
+                "deltaR": 8,
+                "deltaG": 21,
+                "deltaB": 15,
+                "deltaH": -32,
+                "deltaS": -6,
+                "deltaL": 6,
+                "luminanceDelta": 0.027237423397620628
+              },
+              {
+                "key": "border.variant",
+                "expected": "#c9a8f933",
+                "actual": "#bd93f933",
+                "distance": 24.19,
+                "closeness": 84,
+                "deltaR": -12,
+                "deltaG": -21,
+                "deltaB": 0,
+                "deltaH": 1,
+                "deltaS": 2,
+                "deltaL": -4,
+                "luminanceDelta": 0.08736517016700301
+              },
+              {
+                "key": "border.focused",
+                "expected": "#c9a8f977",
+                "actual": "#bd93f9",
+                "distance": 24.19,
+                "closeness": 84,
+                "deltaR": -12,
+                "deltaG": -21,
+                "deltaB": 0,
+                "deltaH": 1,
+                "deltaS": 2,
+                "deltaL": -4,
+                "luminanceDelta": 0.08736517016700301
               }
             ],
             "bestKeys": [
@@ -2165,34 +2164,6 @@
                 "luminanceDelta": 0.0057577743182606125
               },
               {
-                "key": "terminal.ansi.bright_yellow",
-                "expected": "#ffffa5ff",
-                "actual": "#f8ffad",
-                "distance": 10.63,
-                "closeness": 93,
-                "deltaR": -7,
-                "deltaG": 0,
-                "deltaB": 8,
-                "deltaH": 5,
-                "deltaS": 0,
-                "deltaL": 2,
-                "luminanceDelta": 0.010030237294560873
-              },
-              {
-                "key": "terminal.ansi.bright_green",
-                "expected": "#69ff94ff",
-                "actual": "#75ff98",
-                "distance": 12.65,
-                "closeness": 92,
-                "deltaR": 12,
-                "deltaG": 0,
-                "deltaB": 4,
-                "deltaH": -2,
-                "deltaS": 0,
-                "deltaL": 2,
-                "luminanceDelta": 0.009075303495785891
-              },
-              {
                 "key": "toolbar.background",
                 "expected": "#282a36ff",
                 "actual": "#21222c",
@@ -2219,13 +2190,41 @@
                 "deltaS": 0,
                 "deltaL": 4,
                 "luminanceDelta": 0.00917849715488727
+              },
+              {
+                "key": "elevated_surface.background",
+                "expected": "#1e1925ff",
+                "actual": "#272934",
+                "distance": 23.71,
+                "closeness": 84,
+                "deltaR": 9,
+                "deltaG": 16,
+                "deltaB": 15,
+                "deltaH": -34,
+                "deltaS": -5,
+                "deltaL": 6,
+                "luminanceDelta": 0.0116029217650127
+              },
+              {
+                "key": "tab.inactive_background",
+                "expected": "#1c1d26ff",
+                "actual": "#282a36",
+                "distance": 23.85,
+                "closeness": 84,
+                "deltaR": 12,
+                "deltaG": 13,
+                "deltaB": 16,
+                "deltaH": -3,
+                "deltaS": 0,
+                "deltaL": 5,
+                "luminanceDelta": 0.0110784011563118
               }
             ],
             "byCategory": {
               "general": {
                 "count": 18,
-                "meanDistance": 14.6,
-                "meanCloseness": 90.28
+                "meanDistance": 11.23,
+                "meanCloseness": 92.5
               },
               "border": {
                 "count": 4,
@@ -2244,8 +2243,8 @@
               },
               "element": {
                 "count": 5,
-                "meanDistance": 18.06,
-                "meanCloseness": 88
+                "meanDistance": 3.94,
+                "meanCloseness": 97.4
               },
               "drop_target": {
                 "count": 1,
@@ -2254,13 +2253,13 @@
               },
               "ghost_element": {
                 "count": 5,
-                "meanDistance": 30.36,
-                "meanCloseness": 79.8
+                "meanDistance": 14.51,
+                "meanCloseness": 90.4
               },
               "text": {
                 "count": 4,
-                "meanDistance": 24.75,
-                "meanCloseness": 83.5
+                "meanDistance": 6.05,
+                "meanCloseness": 96
               },
               "icon": {
                 "count": 4,
@@ -2269,13 +2268,13 @@
               },
               "status_bar": {
                 "count": 1,
-                "meanDistance": 28.62,
-                "meanCloseness": 81
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "title_bar": {
                 "count": 2,
-                "meanDistance": 52.51,
-                "meanCloseness": 65
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "toolbar": {
                 "count": 1,
@@ -2299,8 +2298,8 @@
               },
               "panel": {
                 "count": 5,
-                "meanDistance": 17.75,
-                "meanCloseness": 88.2
+                "meanDistance": 9.68,
+                "meanCloseness": 93.6
               },
               "pane": {
                 "count": 1,
@@ -2319,13 +2318,13 @@
               },
               "editor": {
                 "count": 16,
-                "meanDistance": 11.39,
-                "meanCloseness": 92.44
+                "meanDistance": 3.02,
+                "meanCloseness": 98
               },
               "terminal": {
                 "count": 20,
-                "meanDistance": 4.4,
-                "meanCloseness": 97.05
+                "meanDistance": 0,
+                "meanCloseness": 100
               },
               "link_text": {
                 "count": 1,
