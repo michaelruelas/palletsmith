@@ -34,3 +34,4 @@ CI runs on every push via `.github/workflows/`:
 
 - [TESTING.md](./TESTING.md) — test conventions and fixtures
 - [.github/workflows/](../.github/workflows/) — CI workflow definitions
+
