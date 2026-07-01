@@ -132,7 +132,7 @@ function buildColors(
     "titleBar.inactiveBackground": themeName === "Dracula" ? "#191a21" : t.titleBarBackground,
     "titleBar.inactiveForeground": t.textMuted,
 
-    "activityBar.background": t.activityBarBackground,
+    "activityBar.background": themeName === "Dracula" ? "#343746" : t.activityBarBackground,
     "activityBar.foreground": t.activityBarForeground,
     "activityBar.inactiveForeground": t.textMuted,
     "activityBarBadge.background": themeName === "Dracula" ? term.magenta : t.textAccent,
@@ -149,19 +149,19 @@ function buildColors(
     "input.foreground": t.inputForeground,
     "inputOption.activeBorder": t.borderFocused,
 
-    "dropdown.background": themeName === "Dracula" ? base24.base01 : t.dropdownBackground,
+    "dropdown.background": themeName === "Dracula" ? "#343746" : t.dropdownBackground,
     "dropdown.border": themeName === "Dracula" ? "#191a21" : t.dropdownBorder,
     "dropdown.foreground": t.inputForeground,
 
     "list.activeSelectionBackground": t.selectionBackground,
     "list.activeSelectionForeground": t.textPrimary,
-    "list.hoverBackground": t.hoverBackground,
+    "list.hoverBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.hoverBackground,
     "list.hoverForeground": t.textPrimary,
-    "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(t.selectionBackground, 0.5) : t.surface,
-    "list.focusBackground": t.selectionBackground,
+    "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.surface,
+    "list.focusBackground": themeName === "Dracula" ? withAlpha(base24.base02, 0.458) : t.selectionBackground,
     "list.highlightForeground": term.cyan,
 
-    "button.background": t.buttonBackground,
+    "button.background": themeName === "Dracula" ? base24.base02 : t.buttonBackground,
     "button.foreground": t.buttonForeground,
 
     "tab.activeBackground": t.tabActiveBackground,
