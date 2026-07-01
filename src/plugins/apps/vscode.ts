@@ -101,7 +101,7 @@ function buildColors(
     "editor.lineHighlightBackground": t.editorBackground,
     "editor.selectionBackground": t.selectionBackground,
     "editor.inactiveSelectionBackground": withAlpha(t.selectionBackground, 0.5),
-    "editorLineNumber.foreground": t.editorLineNumber,
+    "editorLineNumber.foreground": themeName === "Dracula" ? t.textMuted : t.editorLineNumber,
     "editorLineNumber.activeForeground": t.editorActiveLineNumber,
     "editorGutter.background": t.editorGutterBackground,
     "editorCursor.foreground": t.textAccent,
@@ -129,7 +129,7 @@ function buildColors(
 
     "titleBar.activeBackground": t.titleBarBackground,
     "titleBar.activeForeground": t.textPrimary,
-    "titleBar.inactiveBackground": t.titleBarBackground,
+    "titleBar.inactiveBackground": themeName === "Dracula" ? "#191a21" : t.titleBarBackground,
     "titleBar.inactiveForeground": t.textMuted,
 
     "activityBar.background": t.activityBarBackground,
@@ -145,19 +145,19 @@ function buildColors(
     "sideBarSectionHeader.foreground": t.textPrimary,
 
     "input.background": t.inputBackground,
-    "input.border": t.inputBorder,
+    "input.border": themeName === "Dracula" ? "#191a21" : t.inputBorder,
     "input.foreground": t.inputForeground,
     "inputOption.activeBorder": t.borderFocused,
 
-    "dropdown.background": t.dropdownBackground,
-    "dropdown.border": t.dropdownBorder,
+    "dropdown.background": themeName === "Dracula" ? base24.base01 : t.dropdownBackground,
+    "dropdown.border": themeName === "Dracula" ? "#191a21" : t.dropdownBorder,
     "dropdown.foreground": t.inputForeground,
 
     "list.activeSelectionBackground": t.selectionBackground,
     "list.activeSelectionForeground": t.textPrimary,
     "list.hoverBackground": t.hoverBackground,
     "list.hoverForeground": t.textPrimary,
-    "list.inactiveSelectionBackground": t.surface,
+    "list.inactiveSelectionBackground": themeName === "Dracula" ? withAlpha(t.selectionBackground, 0.5) : t.surface,
     "list.focusBackground": t.selectionBackground,
     "list.highlightForeground": term.cyan,
 
@@ -168,10 +168,10 @@ function buildColors(
     "tab.inactiveBackground": t.tabInactiveBackground,
     "tab.activeForeground": t.textPrimary,
     "tab.inactiveForeground": t.textMuted,
-    "tab.border": t.border,
+    "tab.border": themeName === "Dracula" ? "#191a21" : t.border,
     "tab.hoverBackground": t.hoverBackground,
 
-    "focusBorder": t.focusRing,
+    "focusBorder": themeName === "Dracula" ? t.textMuted : t.focusRing,
     "foreground": t.textPrimary,
     "descriptionForeground": t.textPrimary,
     "textLink.foreground": t.linkForeground,
